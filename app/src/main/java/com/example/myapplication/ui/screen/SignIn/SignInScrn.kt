@@ -291,11 +291,15 @@ fun PasswordTextField(
                 }
             },
             trailingIcon = {
-                IconButton(onClick = { showPassword = !showPassword }) {
+                IconButton(
+                    onClick = { showPassword = !showPassword }
+                )
+                {
                     Icon(
                         imageVector = if (showPassword) {
                             Icons.Filled.Visibility
-                        } else {
+                        }
+                        else {
                             Icons.Filled.VisibilityOff
                         },
                         contentDescription = "Переключить видимость пароля"

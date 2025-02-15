@@ -44,14 +44,17 @@ fun RecoverPasswordScrn(){
                     .padding(top = 50.dp)
                     .fillMaxWidth()
                     .height(40.dp)
-            ){
+            )
+            {
                 IconButton(onClick = {}) {
                     Icon(painter = painterResource(R.drawable.back_arrow),
                         contentDescription = null)
                 }
             }
         },
-    ) { paddingValues ->
+    )
+    {
+        paddingValues ->
         RecoverPasswordContent(paddingValues)
     }
 }
@@ -59,13 +62,16 @@ fun RecoverPasswordScrn(){
 fun RecoverPasswordContent(paddingValues: PaddingValues){
     Column(
         modifier = Modifier.padding(top = 100.dp)
-    ) {
+    )
+    {
         TitleWithSubtitleTextForPassword(
             title = stringResource(R.string.miss_pass),
             subTitle = stringResource(R.string.enter_your_email)
         )
         val email = remember { mutableStateOf("") }
-        Spacer(modifier = Modifier.height(35.dp))
+        Spacer(
+            modifier = Modifier.height(35.dp)
+        )
         AuthTextFieldForPassword(
             placeHolderText = stringResource(R.string.template_email),
             value = email.value,
@@ -82,6 +88,7 @@ fun RecoverPasswordContent(paddingValues: PaddingValues){
         }
     }
 }
+
 @Composable
 fun TitleWithSubtitleTextForPassword(title: String, subTitle: String){
     Column (
@@ -90,17 +97,20 @@ fun TitleWithSubtitleTextForPassword(title: String, subTitle: String){
         verticalArrangement = Arrangement.spacedBy(8.dp)
     )
     {
-        Text(text =  title,
+        Text(
+            text =  title,
             style = MatuleTheme.texts.headingBold32.copy(color = MatuleTheme.colors.text),
             textAlign = TextAlign.Center
         )
-        Text(text =  subTitle,
+        Text(
+            text =  subTitle,
             maxLines = 2,
             style = MatuleTheme.texts.subTitleRegular16.copy(color = MatuleTheme.colors.subTextDark),
             textAlign = TextAlign.Center
         )
     }
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AuthTextFieldForPassword(value: String, onChangeValue: (String) -> Unit,placeHolderText: String? = null){
@@ -139,7 +149,6 @@ fun AuthTextFieldForPassword(value: String, onChangeValue: (String) -> Unit,plac
                     focusedIndicatorColor = Color.Transparent,
                     disabledIndicatorColor = Color.Transparent,
                     errorIndicatorColor = Color.Transparent,
-
                     ),
                 placeholder = {
                     if (placeHolderText != null)

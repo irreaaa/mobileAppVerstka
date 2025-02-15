@@ -54,8 +54,10 @@ fun SignUpScrn() {
             )
             {
                 IconButton(onClick = {}) {
-                    Icon(painter = painterResource(R.drawable.back_arrow),
-                        contentDescription = null)
+                    Icon(
+                        painter = painterResource(R.drawable.back_arrow),
+                        contentDescription = null
+                    )
                 }
             }
         },
@@ -77,7 +79,8 @@ fun SignUpScrn() {
             }
         },
     )
-    { paddingValues ->
+    {
+        paddingValues ->
         SignUpContent(paddingValues)
     }
 }
@@ -89,7 +92,8 @@ fun SignUpContent(paddingValues: PaddingValues){
     {
         TitleWithSubtitleText2(
             title = stringResource(R.string.registration),
-            subTitle = stringResource(R.string.sign_in_subtitle)
+            subTitle = stringResource(R.string.sign_in_subtitle
+            )
         )
         val name = remember { mutableStateOf("") }
         Spacer(modifier = Modifier.height(35.dp))
@@ -103,7 +107,9 @@ fun SignUpContent(paddingValues: PaddingValues){
         )
 
         val email = remember { mutableStateOf("") }
-        Spacer(modifier = Modifier.height(35.dp))
+        Spacer(
+            modifier = Modifier.height(35.dp)
+        )
         AuthTextFieldEmail(
             labelText = stringResource(R.string.email),
             placeHolderText = stringResource(R.string.template_email),
@@ -114,7 +120,10 @@ fun SignUpContent(paddingValues: PaddingValues){
         )
         val password = remember { mutableStateOf("") }
         Spacer(modifier = Modifier.height(35.dp))
-        Row(modifier = Modifier.fillMaxWidth()) {
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        )
+        {
             PasswordTextFieldForRegistration(
                 labelText = stringResource(R.string.password),
                 placeHolderText = stringResource(R.string.star_password),
@@ -156,7 +165,7 @@ fun SignUpContent(paddingValues: PaddingValues){
 
         CommonButtonForRegistration(
             modifier = Modifier.padding(top = 30.dp),
-            buttonLable = stringResource(R.string.sign_up)
+            buttonLabel = stringResource(R.string.sign_up)
         )
         {
 
