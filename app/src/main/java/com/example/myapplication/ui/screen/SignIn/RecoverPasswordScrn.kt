@@ -60,20 +60,20 @@ fun RecoverPasswordContent(paddingValues: PaddingValues){
     Column(
         modifier = Modifier.padding(top = 100.dp)
     ) {
-        TitleWithSubtitleTextForPass(
+        TitleWithSubtitleTextForPassword(
             title = stringResource(R.string.miss_pass),
             subTitle = stringResource(R.string.enter_your_email)
         )
         val email = remember { mutableStateOf("") }
         Spacer(modifier = Modifier.height(35.dp))
-        AuthTextFiledForPass(
+        AuthTextFieldForPassword(
             placeHolderText = stringResource(R.string.template_email),
             value = email.value,
             onChangeValue = {
                 email.value = it
             }
         )
-        CommonButtonForPass(
+        CommonButtonForPassword(
             modifier = Modifier.padding(top = 40.dp),
             buttonLable = stringResource(R.string.send)
         ) {
@@ -82,7 +82,7 @@ fun RecoverPasswordContent(paddingValues: PaddingValues){
     }
 }
 @Composable
-fun TitleWithSubtitleTextForPass(title: String, subTitle: String){
+fun TitleWithSubtitleTextForPassword(title: String, subTitle: String){
     Column (
         modifier =  Modifier.padding(horizontal = 20.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -101,7 +101,7 @@ fun TitleWithSubtitleTextForPass(title: String, subTitle: String){
 }
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AuthTextFiledForPass(value: String, onChangeValue: (String) -> Unit,placeHolderText: String? = null){
+fun AuthTextFieldForPassword(value: String, onChangeValue: (String) -> Unit,placeHolderText: String? = null){
     Column (
         modifier = Modifier
             .padding(horizontal = 20.dp)
@@ -148,7 +148,7 @@ fun AuthTextFiledForPass(value: String, onChangeValue: (String) -> Unit,placeHol
 }
 
 @Composable
-fun CommonButtonForPass(modifier: Modifier, buttonLable: String, onClick: ()-> Unit){
+fun CommonButtonForPassword(modifier: Modifier, buttonLable: String, onClick: ()-> Unit){
     Button(
         modifier = modifier
             .padding(horizontal = 20.dp)

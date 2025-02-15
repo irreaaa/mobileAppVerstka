@@ -73,28 +73,32 @@ fun SignInScrn(){
                     .fillMaxWidth()
                     .height(40.dp)
             ){
-                Text(text = stringResource(R.string.sign_up_first),
+                Text(
+                    text = stringResource(R.string.sign_up_first),
                     style = MatuleTheme.texts.bodyRegular16.copy(color = MatuleTheme.colors.text),
-                    textAlign = TextAlign.Center)
+                    textAlign = TextAlign.Center
+                )
             }
         },
-    ) { paddingValues ->
-        SingInContent(paddingValues)
+    )
+    { paddingValues ->
+        SignInContent(paddingValues)
     }
 }
 
 @Composable
-fun SingInContent(paddingValues: PaddingValues){
+fun SignInContent(paddingValues: PaddingValues){
     Column(
         modifier = Modifier.padding(top = 100.dp)
-    ) {
+    )
+    {
         TitleWithSubtitleText(
             title = stringResource(R.string.hello),
             subTitle = stringResource(R.string.sign_in_subtitle)
         )
         val email = remember { mutableStateOf("") }
         Spacer(modifier = Modifier.height(35.dp))
-        AuthTextFiled(
+        AuthTextField(
             labelText = stringResource(R.string.email),
             placeHolderText = stringResource(R.string.template_email),
             value = email.value,
@@ -158,7 +162,7 @@ fun TitleWithSubtitleText(title: String, subTitle: String){
 }
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AuthTextFiled(value: String, onChangeValue: (String) -> Unit,placeHolderText: String? = null, labelText: String? = null){
+fun AuthTextField(value: String, onChangeValue: (String) -> Unit,placeHolderText: String? = null, labelText: String? = null){
     Column (
         modifier = Modifier
             .padding(horizontal = 20.dp)

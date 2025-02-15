@@ -67,27 +67,31 @@ fun SignUpScrn() {
                     .fillMaxWidth()
                     .height(40.dp)
             ){
-                Text(text = stringResource(R.string.sign_in),
+                Text(
+                    text = stringResource(R.string.sign_in),
                     style = MatuleTheme.texts.bodyRegular16.copy(color = MatuleTheme.colors.text),
-                    textAlign = TextAlign.Center)
+                    textAlign = TextAlign.Center
+                )
             }
         },
-    ) { paddingValues ->
-        SingUpContent(paddingValues)
+    )
+    { paddingValues ->
+        SignUpContent(paddingValues)
     }
 }
 @Composable
-fun SingUpContent(paddingValues: PaddingValues){
+fun SignUpContent(paddingValues: PaddingValues){
     Column(
         modifier = Modifier.padding(top = 100.dp)
-    ) {
+    )
+    {
         TitleWithSubtitleText2(
             title = stringResource(R.string.registration),
             subTitle = stringResource(R.string.sign_in_subtitle)
         )
         val name = remember { mutableStateOf("") }
         Spacer(modifier = Modifier.height(35.dp))
-        AuthTextFiledName(
+        AuthTextFieldName(
             labelText = stringResource(R.string.name),
             placeHolderText = stringResource(R.string.xxxxxxxx),
             value = name.value,
@@ -98,7 +102,7 @@ fun SingUpContent(paddingValues: PaddingValues){
 
         val email = remember { mutableStateOf("") }
         Spacer(modifier = Modifier.height(35.dp))
-        AuthTextFiledEmail(
+        AuthTextFieldEmail(
             labelText = stringResource(R.string.email),
             placeHolderText = stringResource(R.string.template_email),
             value = email.value,
@@ -109,7 +113,7 @@ fun SingUpContent(paddingValues: PaddingValues){
         val password = remember { mutableStateOf("") }
         Spacer(modifier = Modifier.height(35.dp))
         Row(modifier = Modifier.fillMaxWidth()) {
-            PasswordTextFieldForReg(
+            PasswordTextFieldForRegistration(
                 labelText = stringResource(R.string.password),
                 placeHolderText = stringResource(R.string.star_password),
                 value = password.value,
@@ -141,7 +145,7 @@ fun SingUpContent(paddingValues: PaddingValues){
                 style = MatuleTheme.texts.bodyRegular12.copy(color = MatuleTheme.colors.subTextDark))
         }
 
-        CommonButtonForReg(
+        CommonButtonForRegistration(
             modifier = Modifier.padding(top = 30.dp),
             buttonLable = stringResource(R.string.sign_up)
         ) {
@@ -169,7 +173,7 @@ fun TitleWithSubtitleText2(title: String, subTitle: String){
 }
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AuthTextFiledName(value: String, onChangeValue: (String) -> Unit,placeHolderText: String? = null, labelText: String? = null){
+fun AuthTextFieldName(value: String, onChangeValue: (String) -> Unit,placeHolderText: String? = null, labelText: String? = null){
     Column (
         modifier = Modifier
             .padding(horizontal = 20.dp)
@@ -221,7 +225,7 @@ fun AuthTextFiledName(value: String, onChangeValue: (String) -> Unit,placeHolder
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AuthTextFiledEmail(value: String, onChangeValue: (String) -> Unit,placeHolderText: String? = null, labelText: String? = null){
+fun AuthTextFieldEmail(value: String, onChangeValue: (String) -> Unit,placeHolderText: String? = null, labelText: String? = null){
     Column (
         modifier = Modifier
             .padding(horizontal = 20.dp)
@@ -272,7 +276,7 @@ fun AuthTextFiledEmail(value: String, onChangeValue: (String) -> Unit,placeHolde
 }
 
 @Composable
-fun CommonButtonForReg(modifier: Modifier, buttonLable: String, onClick: ()-> Unit){
+fun CommonButtonForRegistration(modifier: Modifier, buttonLable: String, onClick: ()-> Unit){
     Button(
         modifier = modifier
             .padding(horizontal = 20.dp)
@@ -299,7 +303,7 @@ fun CommonButtonForReg(modifier: Modifier, buttonLable: String, onClick: ()-> Un
 
 
 @Composable
-fun PasswordTextFieldForReg(
+fun PasswordTextFieldForRegistration(
     value: String,
     onValueChange: (String) -> Unit,
     placeHolderText: String? = null,
