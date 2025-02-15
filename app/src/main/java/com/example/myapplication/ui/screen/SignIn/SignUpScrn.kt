@@ -135,11 +135,13 @@ fun SignUpContent(paddingValues: PaddingValues){
                 disabledContainerColor = Color.Unspecified
             ),
 
-            ) {
-
-            Icon(painter = painterResource(R.drawable.policy_check),
+            )
+        {
+            Icon(
+                painter = painterResource(R.drawable.policy_check),
                 contentDescription = null,
-                modifier = Modifier.height(18.dp))
+                modifier = Modifier.height(18.dp)
+            )
 
             Text(
                 text = "Даю согласие на обработку\nперсональных данных",
