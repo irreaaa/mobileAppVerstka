@@ -193,9 +193,12 @@ fun AuthTextFieldName(value: String, onChangeValue: (String) -> Unit,placeHolder
 
     )
     {
-        if(labelText != null){
-            Text(text = labelText, style = MatuleTheme.texts.bodyRegular16.copy(MatuleTheme.colors.text),
-                textAlign = TextAlign.Right)
+        if(labelText != null)
+        {
+            Text(
+                text = labelText, style = MatuleTheme.texts.bodyRegular16.copy(MatuleTheme.colors.text),
+                textAlign = TextAlign.Right
+            )
         }
         val interaction = remember { MutableInteractionSource() }
         BasicTextField(
@@ -207,7 +210,7 @@ fun AuthTextFieldName(value: String, onChangeValue: (String) -> Unit,placeHolder
                 .background(MatuleTheme.colors.background)
         )
         {
-                innerTextField ->
+            innerTextField ->
             TextFieldDefaults.DecorationBox(
                 value = value,
                 singleLine = true,
@@ -248,8 +251,10 @@ fun AuthTextFieldEmail(value: String, onChangeValue: (String) -> Unit,placeHolde
     )
     {
         if(labelText != null){
-            Text(text = labelText, style = MatuleTheme.texts.bodyRegular16.copy(MatuleTheme.colors.text),
-                textAlign = TextAlign.Right)
+            Text(
+                text = labelText, style = MatuleTheme.texts.bodyRegular16.copy(MatuleTheme.colors.text),
+                textAlign = TextAlign.Right
+            )
         }
         val interaction = remember { MutableInteractionSource() }
         BasicTextField(
@@ -261,7 +266,7 @@ fun AuthTextFieldEmail(value: String, onChangeValue: (String) -> Unit,placeHolde
                 .background(MatuleTheme.colors.background)
         )
         {
-                innerTextField ->
+            innerTextField ->
             TextFieldDefaults.DecorationBox(
                 value = value,
                 singleLine = true,
@@ -282,8 +287,10 @@ fun AuthTextFieldEmail(value: String, onChangeValue: (String) -> Unit,placeHolde
                     ),
                 placeholder = {
                     if (placeHolderText != null)
-                        Text(text = placeHolderText,
-                            style = MatuleTheme.texts.bodyRegular14.copy(color = MatuleTheme.colors.hint))
+                        Text(
+                            text = placeHolderText,
+                            style = MatuleTheme.texts.bodyRegular14.copy(color = MatuleTheme.colors.hint)
+                        )
                 }
             )
         }
@@ -291,7 +298,7 @@ fun AuthTextFieldEmail(value: String, onChangeValue: (String) -> Unit,placeHolde
 }
 
 @Composable
-fun CommonButtonForRegistration(modifier: Modifier, buttonLable: String, onClick: ()-> Unit){
+fun CommonButtonForRegistration(modifier: Modifier, buttonLabel: String, onClick: ()-> Unit){
     Button(
         modifier = modifier
             .padding(horizontal = 20.dp)
@@ -309,7 +316,7 @@ fun CommonButtonForRegistration(modifier: Modifier, buttonLable: String, onClick
     )
     {
         Text(
-            text = buttonLable,
+            text = buttonLabel,
             style = MatuleTheme.texts.bodyRegular14.copy(color = MatuleTheme.colors.background),
             textAlign = TextAlign.Center
 
