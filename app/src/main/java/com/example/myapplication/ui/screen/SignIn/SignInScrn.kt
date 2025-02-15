@@ -57,7 +57,8 @@ fun SignInScrn(){
                     .padding(top = 50.dp)
                     .fillMaxWidth()
                     .height(40.dp)
-            ){
+            )
+            {
                 IconButton(onClick = {}) {
                     Icon(painter = painterResource(R.drawable.back_arrow),
                         contentDescription = null)
@@ -72,7 +73,8 @@ fun SignInScrn(){
                     .padding(bottom = 50.dp)
                     .fillMaxWidth()
                     .height(40.dp)
-            ){
+            )
+            {
                 Text(
                     text = stringResource(R.string.sign_up_first),
                     style = MatuleTheme.texts.bodyRegular16.copy(color = MatuleTheme.colors.text),
@@ -129,15 +131,17 @@ fun SignInContent(paddingValues: PaddingValues){
                 disabledContainerColor = Color.Unspecified
             ),
 
-            ) {
+            )
+        {
             Text(text = stringResource(R.string.recover),
                 style = MatuleTheme.texts.bodyRegular12.copy(color = MatuleTheme.colors.subTextDark))
         }
 
         CommonButton(
             modifier = Modifier.padding(top = 10.dp),
-            buttonLable = stringResource(R.string.enter)
-        ) {
+            buttonLabel = stringResource(R.string.enter)
+        )
+        {
 
         }
     }
@@ -148,7 +152,8 @@ fun TitleWithSubtitleText(title: String, subTitle: String){
         modifier =  Modifier.padding(horizontal = 20.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
+    )
+    {
         Text(text =  title,
             style = MatuleTheme.texts.headingBold32.copy(color = MatuleTheme.colors.text),
             textAlign = TextAlign.Center
@@ -169,7 +174,8 @@ fun AuthTextField(value: String, onChangeValue: (String) -> Unit,placeHolderText
             .wrapContentSize(),
         verticalArrangement = Arrangement.spacedBy(12.dp)
 
-    ){
+    )
+    {
         if(labelText != null){
             Text(text = labelText, style = MatuleTheme.texts.bodyRegular16.copy(MatuleTheme.colors.text),
                 textAlign = TextAlign.Right)
@@ -182,7 +188,8 @@ fun AuthTextField(value: String, onChangeValue: (String) -> Unit,placeHolderText
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(14.dp))
                 .background(MatuleTheme.colors.background)
-        ){
+        )
+        {
                 innerTextField ->
             TextFieldDefaults.DecorationBox(
                 value = value,
@@ -212,9 +219,8 @@ fun AuthTextField(value: String, onChangeValue: (String) -> Unit,placeHolderText
     }
 }
 
-
 @Composable
-fun CommonButton(modifier: Modifier, buttonLable: String, onClick: ()-> Unit){
+fun CommonButton(modifier: Modifier, buttonLabel: String, onClick: ()-> Unit){
     Button(
         modifier = modifier
             .padding(horizontal = 20.dp)
@@ -229,9 +235,10 @@ fun CommonButton(modifier: Modifier, buttonLable: String, onClick: ()-> Unit){
             containerColor = Color.Transparent
         ),
         onClick = onClick
-    ) {
+    )
+    {
         Text(
-            text = buttonLable,
+            text = buttonLabel,
             style = MatuleTheme.texts.bodyRegular14.copy(color = MatuleTheme.colors.background),
             textAlign = TextAlign.Center
 
@@ -246,7 +253,8 @@ fun PasswordTextField(
     onValueChange: (String) -> Unit,
     placeHolderText: String? = null,
     labelText: String? = null
-) {
+)
+{
     var showPassword by remember { mutableStateOf(false) }
 
     Column(
@@ -255,7 +263,8 @@ fun PasswordTextField(
             .fillMaxWidth()
             .wrapContentSize(),
         verticalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
+    )
+    {
         if (labelText != null) {
             Text(
                 text = labelText,

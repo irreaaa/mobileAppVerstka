@@ -51,7 +51,8 @@ fun SignUpScrn() {
                     .padding(top = 50.dp)
                     .fillMaxWidth()
                     .height(40.dp)
-            ){
+            )
+            {
                 IconButton(onClick = {}) {
                     Icon(painter = painterResource(R.drawable.back_arrow),
                         contentDescription = null)
@@ -66,7 +67,8 @@ fun SignUpScrn() {
                     .padding(bottom = 50.dp)
                     .fillMaxWidth()
                     .height(40.dp)
-            ){
+            )
+            {
                 Text(
                     text = stringResource(R.string.sign_in),
                     style = MatuleTheme.texts.bodyRegular16.copy(color = MatuleTheme.colors.text),
@@ -134,21 +136,27 @@ fun SignUpContent(paddingValues: PaddingValues){
             ),
 
             ) {
-            Icon(painter = painterResource( R.drawable.policy_check),
+
+            Icon(painter = painterResource(R.drawable.policy_check),
                 contentDescription = null,
                 modifier = Modifier.height(18.dp))
 
-            Text(text = "Даю согласие на обработку\n" +
-                    "персональных данных" ,
+            Text(
+                text = "Даю согласие на обработку\nперсональных данных",
                 textAlign = TextAlign.Left,
                 modifier = Modifier.padding(start = 20.dp),
-                style = MatuleTheme.texts.bodyRegular12.copy(color = MatuleTheme.colors.subTextDark))
+                style = MatuleTheme.texts.bodyRegular12.copy(
+                    color = MatuleTheme.colors.subTextDark,
+                    textDecoration = androidx.compose.ui.text.style.TextDecoration.Underline
+                )
+            )
         }
 
         CommonButtonForRegistration(
             modifier = Modifier.padding(top = 30.dp),
             buttonLable = stringResource(R.string.sign_up)
-        ) {
+        )
+        {
 
         }
     }
@@ -159,7 +167,8 @@ fun TitleWithSubtitleText2(title: String, subTitle: String){
         modifier =  Modifier.padding(horizontal = 20.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
+    )
+    {
         Text(text =  title,
             style = MatuleTheme.texts.headingBold32.copy(color = MatuleTheme.colors.text),
             textAlign = TextAlign.Center
@@ -180,7 +189,8 @@ fun AuthTextFieldName(value: String, onChangeValue: (String) -> Unit,placeHolder
             .wrapContentSize(),
         verticalArrangement = Arrangement.spacedBy(12.dp)
 
-    ){
+    )
+    {
         if(labelText != null){
             Text(text = labelText, style = MatuleTheme.texts.bodyRegular16.copy(MatuleTheme.colors.text),
                 textAlign = TextAlign.Right)
@@ -193,7 +203,8 @@ fun AuthTextFieldName(value: String, onChangeValue: (String) -> Unit,placeHolder
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(14.dp))
                 .background(MatuleTheme.colors.background)
-        ){
+        )
+        {
                 innerTextField ->
             TextFieldDefaults.DecorationBox(
                 value = value,
@@ -232,7 +243,8 @@ fun AuthTextFieldEmail(value: String, onChangeValue: (String) -> Unit,placeHolde
             .wrapContentSize(),
         verticalArrangement = Arrangement.spacedBy(12.dp)
 
-    ){
+    )
+    {
         if(labelText != null){
             Text(text = labelText, style = MatuleTheme.texts.bodyRegular16.copy(MatuleTheme.colors.text),
                 textAlign = TextAlign.Right)
@@ -245,7 +257,8 @@ fun AuthTextFieldEmail(value: String, onChangeValue: (String) -> Unit,placeHolde
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(14.dp))
                 .background(MatuleTheme.colors.background)
-        ){
+        )
+        {
                 innerTextField ->
             TextFieldDefaults.DecorationBox(
                 value = value,
@@ -291,7 +304,8 @@ fun CommonButtonForRegistration(modifier: Modifier, buttonLable: String, onClick
             containerColor = Color.Transparent
         ),
         onClick = onClick
-    ) {
+    )
+    {
         Text(
             text = buttonLable,
             style = MatuleTheme.texts.bodyRegular14.copy(color = MatuleTheme.colors.background),
@@ -308,7 +322,8 @@ fun PasswordTextFieldForRegistration(
     onValueChange: (String) -> Unit,
     placeHolderText: String? = null,
     labelText: String? = null
-) {
+)
+{
     var showPassword by remember { mutableStateOf(false) }
 
     Column(
@@ -317,7 +332,8 @@ fun PasswordTextFieldForRegistration(
             .fillMaxWidth()
             .wrapContentSize(),
         verticalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
+    )
+    {
         if (labelText != null) {
             Text(
                 text = labelText,

@@ -76,7 +76,8 @@ fun RecoverPasswordContent(paddingValues: PaddingValues){
         CommonButtonForPassword(
             modifier = Modifier.padding(top = 40.dp),
             buttonLable = stringResource(R.string.send)
-        ) {
+        )
+        {
 
         }
     }
@@ -87,7 +88,8 @@ fun TitleWithSubtitleTextForPassword(title: String, subTitle: String){
         modifier =  Modifier.padding(horizontal = 20.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
+    )
+    {
         Text(text =  title,
             style = MatuleTheme.texts.headingBold32.copy(color = MatuleTheme.colors.text),
             textAlign = TextAlign.Center
@@ -108,7 +110,8 @@ fun AuthTextFieldForPassword(value: String, onChangeValue: (String) -> Unit,plac
             .wrapContentSize(),
         verticalArrangement = Arrangement.spacedBy(12.dp)
 
-    ){
+    )
+    {
         val interaction = remember { MutableInteractionSource() }
         BasicTextField(
             value = value,
@@ -117,7 +120,8 @@ fun AuthTextFieldForPassword(value: String, onChangeValue: (String) -> Unit,plac
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(14.dp))
                 .background(MatuleTheme.colors.background)
-        ){
+        )
+        {
                 innerTextField ->
             TextFieldDefaults.DecorationBox(
                 value = value,
@@ -163,7 +167,8 @@ fun CommonButtonForPassword(modifier: Modifier, buttonLable: String, onClick: ()
             containerColor = Color.Transparent
         ),
         onClick = onClick
-    ) {
+    )
+    {
         Text(
             text = buttonLable,
             style = MatuleTheme.texts.bodyRegular14.copy(color = MatuleTheme.colors.background),
