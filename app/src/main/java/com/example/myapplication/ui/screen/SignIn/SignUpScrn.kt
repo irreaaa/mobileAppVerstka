@@ -41,6 +41,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.myapplication.R
+import com.example.myapplication.ui.theme.MatuleTheme
 
 @Composable
 fun SignUpScrn() {
@@ -73,7 +74,7 @@ fun SignUpScrn() {
             {
                 Text(
                     text = stringResource(R.string.sign_in),
-                    style = MatuleTheme.texts.bodyRegular16.copy(color = MatuleTheme.colors.text),
+                    style = MatuleTheme.typography.bodyRegular16.copy(color = MatuleTheme.colors.text),
                     textAlign = TextAlign.Center
                 )
             }
@@ -156,7 +157,7 @@ fun SignUpContent(paddingValues: PaddingValues){
                 text = "Даю согласие на обработку\nперсональных данных",
                 textAlign = TextAlign.Left,
                 modifier = Modifier.padding(start = 20.dp),
-                style = MatuleTheme.texts.bodyRegular12.copy(
+                style = MatuleTheme.typography.bodyRegular12.copy(
                     color = MatuleTheme.colors.subTextDark,
                     textDecoration = androidx.compose.ui.text.style.TextDecoration.Underline
                 )
@@ -181,12 +182,12 @@ fun TitleWithSubtitleText2(title: String, subTitle: String){
     )
     {
         Text(text =  title,
-            style = MatuleTheme.texts.headingBold32.copy(color = MatuleTheme.colors.text),
+            style = MatuleTheme.typography.headingBold32.copy(color = MatuleTheme.colors.text),
             textAlign = TextAlign.Center
         )
         Text(text =  subTitle,
             maxLines = 2,
-            style = MatuleTheme.texts.subTitleRegular16.copy(color = MatuleTheme.colors.subTextDark),
+            style = MatuleTheme.typography.subTitleRegular16.copy(color = MatuleTheme.colors.subTextDark),
             textAlign = TextAlign.Center
         )
     }
@@ -205,7 +206,7 @@ fun AuthTextFieldName(value: String, onChangeValue: (String) -> Unit,placeHolder
         if(labelText != null)
         {
             Text(
-                text = labelText, style = MatuleTheme.texts.bodyRegular16.copy(MatuleTheme.colors.text),
+                text = labelText, style = MatuleTheme.typography.bodyRegular16.copy(MatuleTheme.colors.text),
                 textAlign = TextAlign.Right
             )
         }
@@ -241,7 +242,7 @@ fun AuthTextFieldName(value: String, onChangeValue: (String) -> Unit,placeHolder
                 placeholder = {
                     if (placeHolderText != null)
                         Text(text = placeHolderText,
-                            style = MatuleTheme.texts.bodyRegular14.copy(color = MatuleTheme.colors.hint))
+                            style = MatuleTheme.typography.bodyRegular14.copy(color = MatuleTheme.colors.hint))
                 }
             )
         }
@@ -261,7 +262,7 @@ fun AuthTextFieldEmail(value: String, onChangeValue: (String) -> Unit,placeHolde
     {
         if(labelText != null){
             Text(
-                text = labelText, style = MatuleTheme.texts.bodyRegular16.copy(MatuleTheme.colors.text),
+                text = labelText, style = MatuleTheme.typography.bodyRegular16.copy(MatuleTheme.colors.text),
                 textAlign = TextAlign.Right
             )
         }
@@ -298,7 +299,7 @@ fun AuthTextFieldEmail(value: String, onChangeValue: (String) -> Unit,placeHolde
                     if (placeHolderText != null)
                         Text(
                             text = placeHolderText,
-                            style = MatuleTheme.texts.bodyRegular14.copy(color = MatuleTheme.colors.hint)
+                            style = MatuleTheme.typography.bodyRegular14.copy(color = MatuleTheme.colors.hint)
                         )
                 }
             )
@@ -326,7 +327,7 @@ fun CommonButtonForRegistration(modifier: Modifier, buttonLabel: String, onClick
     {
         Text(
             text = buttonLabel,
-            style = MatuleTheme.texts.bodyRegular14.copy(color = MatuleTheme.colors.background),
+            style = MatuleTheme.typography.bodyRegular14.copy(color = MatuleTheme.colors.background),
             textAlign = TextAlign.Center
 
         )
@@ -355,7 +356,7 @@ fun PasswordTextFieldForRegistration(
         if (labelText != null) {
             Text(
                 text = labelText,
-                style = MatuleTheme.texts.bodyRegular16.copy(MatuleTheme.colors.text),
+                style = MatuleTheme.typography.bodyRegular16.copy(MatuleTheme.colors.text),
                 textAlign = TextAlign.Start
             )
         }
@@ -373,7 +374,7 @@ fun PasswordTextFieldForRegistration(
                 if (placeHolderText != null) {
                     Text(
                         text = placeHolderText,
-                        style = MatuleTheme.texts.bodyRegular14.copy(color = MatuleTheme.colors.hint)
+                        style = MatuleTheme.typography.bodyRegular14.copy(color = MatuleTheme.colors.hint)
                     )
                 }
             },

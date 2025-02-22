@@ -2,13 +2,13 @@
     <string name="app_name">My Application</string>
     <string name="hello">Привет!</string>
     <string name="sign_in_subtitle">Заполните Свои Данные Или Продолжите Через Социальные Медиа</string>
-    <string name="template_email">xyz@mail.ru</string>
+    <string name="template_email">xyz@gmail.com</string>
     <string name="email">Email</string>
     <string name="enter">Войти</string>
     <string name="sign_up_first">Вы впервые? Создать пользователя</string>
     <string name="password">Пароль</string>
     <string name="star_password">********</string>
-    <string name="recover">Востановить</string>
+    <string name="recover">Восстановить</string>
     <string name="name">Ваше имя</string>
     <string name="xxxxxxxx">xxxxxxxx</string>
     <string name="sign_up">Зарегистрироваться</string>
@@ -17,4 +17,7 @@
     <string name="send">Отправить</string>
     <string name="miss_pass">Забыл Пароль</string>
     <string name="enter_your_email">Введите Свою Учетную Запись Для Сброса</string>
+    <string name="uncorrect_email">Неправильная почта</string>
+    <string name="password_template">***********</string>
+    <string name="uncorrect_password">Неправильный пароль</string>
 </resources>

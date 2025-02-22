@@ -34,6 +34,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.myapplication.R
+import com.example.myapplication.ui.theme.MatuleTheme
 
 @Composable
 fun RecoverPasswordScrn(){
@@ -99,13 +100,13 @@ fun TitleWithSubtitleTextForPassword(title: String, subTitle: String){
     {
         Text(
             text =  title,
-            style = MatuleTheme.texts.headingBold32.copy(color = MatuleTheme.colors.text),
+            style = MatuleTheme.typography.headingBold32.copy(color = MatuleTheme.colors.text),
             textAlign = TextAlign.Center
         )
         Text(
             text =  subTitle,
             maxLines = 2,
-            style = MatuleTheme.texts.subTitleRegular16.copy(color = MatuleTheme.colors.subTextDark),
+            style = MatuleTheme.typography.subTitleRegular16.copy(color = MatuleTheme.colors.subTextDark),
             textAlign = TextAlign.Center
         )
     }
@@ -153,7 +154,7 @@ fun AuthTextFieldForPassword(value: String, onChangeValue: (String) -> Unit,plac
                 placeholder = {
                     if (placeHolderText != null)
                         Text(text = placeHolderText,
-                            style = MatuleTheme.texts.bodyRegular14.copy(color = MatuleTheme.colors.hint))
+                            style = MatuleTheme.typography.bodyRegular14.copy(color = MatuleTheme.colors.hint))
                 }
             )
         }
@@ -180,7 +181,7 @@ fun CommonButtonForPassword(modifier: Modifier, buttonLable: String, onClick: ()
     {
         Text(
             text = buttonLable,
-            style = MatuleTheme.texts.bodyRegular14.copy(color = MatuleTheme.colors.background),
+            style = MatuleTheme.typography.bodyRegular14.copy(color = MatuleTheme.colors.background),
             textAlign = TextAlign.Center
 
         )
