@@ -11,13 +11,18 @@
     <string name="recover">Восстановить</string>
     <string name="name">Ваше имя</string>
     <string name="xxxxxxxx">xxxxxxxx</string>
+    <string name="enter_name">Введите имя</string>
+    <string name="enter_email">Введите почту</string>
+    <string name="enter_password">Введите пароль</string>
     <string name="sign_up">Зарегистрироваться</string>
     <string name="sign_in">Есть аккаунт? Войти</string>
     <string name="registration">Регистрация</string>
     <string name="send">Отправить</string>
     <string name="miss_pass">Забыл Пароль</string>
     <string name="enter_your_email">Введите Свою Учетную Запись Для Сброса</string>
-    <string name="uncorrect_email">Неправильная почта</string>
+    <string name="incorrect_email">Неправильная почта</string>
     <string name="password_template">***********</string>
-    <string name="uncorrect_password">Неправильный пароль</string>
+    <string name="incorrect_password">Неправильный пароль</string>
+    <string name="incorrect_name">Неправильное имя</string>
+    <string name="privacy_policy">Даю согласие на обработку персональных данных</string>
 </resources>

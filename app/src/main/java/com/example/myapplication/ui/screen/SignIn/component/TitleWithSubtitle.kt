@@ -29,7 +29,5 @@ fun TitleWithSubtitleText(title: String, subTitle:String){
             style = MatuleTheme.typography.subTitleRegular16.copy(color = MatuleTheme.colors.subTextDark),
             textAlign = TextAlign.Center
         )
-
-
     }
 }

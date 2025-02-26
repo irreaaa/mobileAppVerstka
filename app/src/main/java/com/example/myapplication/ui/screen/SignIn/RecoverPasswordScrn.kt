@@ -33,11 +33,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.myapplication.R
+import com.example.myapplication.ui.screen.SignIn.component.AuthButton
+import com.example.myapplication.ui.screen.SignIn.component.AuthTextField
+import com.example.myapplication.ui.screen.SignIn.component.TitleWithSubtitleText
 import com.example.myapplication.ui.theme.MatuleTheme
 
 @Composable
 fun RecoverPasswordScrn(){
+    val recoverPasswordViewModel: RecoverPasswordViewModel = viewModel()
     Scaffold(
         topBar = {
             Row(
@@ -56,134 +61,47 @@ fun RecoverPasswordScrn(){
     )
     {
         paddingValues ->
-        RecoverPasswordContent(paddingValues)
+        RecoverPasswordContent(paddingValues, recoverPasswordViewModel)
     }
 }
 @Composable
-fun RecoverPasswordContent(paddingValues: PaddingValues){
+fun RecoverPasswordContent(
+    paddingValues: PaddingValues,
+    recoverPasswordViewModel: RecoverPasswordViewModel
+){
+    val recoverPasswordState = recoverPasswordViewModel.recoverPasswordState
     Column(
         modifier = Modifier.padding(top = 100.dp)
     )
     {
-        TitleWithSubtitleTextForPassword(
+        TitleWithSubtitleText(
             title = stringResource(R.string.miss_pass),
             subTitle = stringResource(R.string.enter_your_email)
         )
-        val email = remember { mutableStateOf("") }
+
         Spacer(
             modifier = Modifier.height(35.dp)
         )
-        AuthTextFieldForPassword(
-            placeHolderText = stringResource(R.string.template_email),
-            value = email.value,
+        AuthTextField(
+            value = recoverPasswordState.value.email,
             onChangeValue = {
-                email.value = it
+                recoverPasswordViewModel.setEmail(it)
+            },
+            isError = recoverPasswordViewModel.emailHasError.value,
+            placeholder = {
+                Text(text = stringResource(R.string.template_email))
+            },
+            supportingText = {
+                Text(text = stringResource(R.string.incorrect_email))
+            },
+            label = {
+                Text(text = stringResource(R.string.email))
             }
         )
-        CommonButtonForPassword(
-            modifier = Modifier.padding(top = 40.dp),
-            buttonLable = stringResource(R.string.send)
-        )
-        {
-
+        AuthButton(
+            onClick = {}
+        ) {
+            Text(stringResource(R.string.recover))
         }
-    }
-}
-
-@Composable
-fun TitleWithSubtitleTextForPassword(title: String, subTitle: String){
-    Column (
-        modifier =  Modifier.padding(horizontal = 20.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    )
-    {
-        Text(
-            text =  title,
-            style = MatuleTheme.typography.headingBold32.copy(color = MatuleTheme.colors.text),
-            textAlign = TextAlign.Center
-        )
-        Text(
-            text =  subTitle,
-            maxLines = 2,
-            style = MatuleTheme.typography.subTitleRegular16.copy(color = MatuleTheme.colors.subTextDark),
-            textAlign = TextAlign.Center
-        )
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun AuthTextFieldForPassword(value: String, onChangeValue: (String) -> Unit,placeHolderText: String? = null){
-    Column (
-        modifier = Modifier
-            .padding(horizontal = 20.dp)
-            .wrapContentSize(),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
-
-    )
-    {
-        val interaction = remember { MutableInteractionSource() }
-        BasicTextField(
-            value = value,
-            onValueChange = { onChangeValue(it) },
-            modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(14.dp))
-                .background(MatuleTheme.colors.background)
-        )
-        {
-                innerTextField ->
-            TextFieldDefaults.DecorationBox(
-                value = value,
-                singleLine = true,
-                innerTextField = innerTextField,
-                enabled = true,
-                visualTransformation = VisualTransformation.None,
-                interactionSource = interaction,
-                colors = TextFieldDefaults.colors(
-                    focusedContainerColor = MatuleTheme.colors.background,
-                    disabledContainerColor = MatuleTheme.colors.background,
-                    unfocusedContainerColor = MatuleTheme.colors.background,
-                    errorContainerColor = MatuleTheme.colors.background,
-                    unfocusedIndicatorColor = Color.Transparent,
-                    focusedIndicatorColor = Color.Transparent,
-                    disabledIndicatorColor = Color.Transparent,
-                    errorIndicatorColor = Color.Transparent,
-                    ),
-                placeholder = {
-                    if (placeHolderText != null)
-                        Text(text = placeHolderText,
-                            style = MatuleTheme.typography.bodyRegular14.copy(color = MatuleTheme.colors.hint))
-                }
-            )
-        }
-    }
-}
-
-@Composable
-fun CommonButtonForPassword(modifier: Modifier, buttonLable: String, onClick: ()-> Unit){
-    Button(
-        modifier = modifier
-            .padding(horizontal = 20.dp)
-            .fillMaxWidth()
-            .height(50.dp)
-            .clip(RoundedCornerShape(14.dp))
-            .background(MatuleTheme.colors.accent),
-        colors = ButtonColors(
-            contentColor = MatuleTheme.colors.accent,
-            disabledContentColor = Color.Transparent,
-            disabledContainerColor = MatuleTheme.colors.accent,
-            containerColor = Color.Transparent
-        ),
-        onClick = onClick
-    )
-    {
-        Text(
-            text = buttonLable,
-            style = MatuleTheme.typography.bodyRegular14.copy(color = MatuleTheme.colors.background),
-            textAlign = TextAlign.Center
-
-        )
     }
 }
