@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.screen.SignIn
+package com.example.myapplication.ui.screen.SignUp
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,9 +22,9 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.myapplication.R
-import com.example.myapplication.ui.screen.SignIn.component.AuthButton
-import com.example.myapplication.ui.screen.SignIn.component.AuthTextField
-import com.example.myapplication.ui.screen.SignIn.component.TitleWithSubtitleText
+import com.example.myapplication.ui.screen.component.AuthButton
+import com.example.myapplication.ui.screen.component.AuthTextField
+import com.example.myapplication.ui.screen.component.TitleWithSubtitleText
 import com.example.myapplication.ui.theme.MatuleTheme
 
 @Composable

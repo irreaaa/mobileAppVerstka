@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.screen.SignIn
+package com.example.myapplication.ui.screen.SignUp
 
 data class SignUpState (
     var name: String = "",

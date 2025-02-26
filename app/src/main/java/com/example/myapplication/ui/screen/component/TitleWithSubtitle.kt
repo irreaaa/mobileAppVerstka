@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.screen.SignIn.component
+package com.example.myapplication.ui.screen.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -28,6 +28,5 @@ fun TitleWithSubtitleText(title: String, subTitle:String){
             maxLines = 2,
             style = MatuleTheme.typography.subTitleRegular16.copy(color = MatuleTheme.colors.subTextDark),
             textAlign = TextAlign.Center
-        )
-    }
+        )    }
 }

@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.screen.SignIn
+package com.example.myapplication.ui.screen.SignUp
 
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf

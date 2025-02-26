@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.screen.SignIn.component
+package com.example.myapplication.ui.screen.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
