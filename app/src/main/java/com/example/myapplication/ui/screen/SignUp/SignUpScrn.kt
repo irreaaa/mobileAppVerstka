@@ -13,6 +13,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -22,10 +23,14 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.myapplication.R
+import com.example.myapplication.ui.data.remote.RetrofitClient
+import com.example.myapplication.ui.data.remote.User
 import com.example.myapplication.ui.screen.component.AuthButton
 import com.example.myapplication.ui.screen.component.AuthTextField
 import com.example.myapplication.ui.screen.component.TitleWithSubtitleText
 import com.example.myapplication.ui.theme.MatuleTheme
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @Composable
 fun SignUpScrn() {
@@ -125,9 +130,16 @@ fun SignUpContent(paddingValues: PaddingValues, signUpViewModel: SignUpViewModel
                 )
             )
         }
+        val coroutine = rememberCoroutineScope{Dispatchers.IO}
+        AuthButton(onClick = {
+            val user = User(userName = signUpState.value.name, email = signUpState.value.email, password = signUpState.value.password)
 
-        AuthButton(onClick = {}) {
+            coroutine.launch {
+                RetrofitClient.retrofit.registration(user)
+            }
+        }) {
             Text(stringResource(R.string.sign_up))
+
         }
     }
 }
