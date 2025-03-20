@@ -3,8 +3,15 @@ package com.example.myapplication.ui.screen.SignUp
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.myapplication.ui.data.domain.usecase.AuthUseCase
+import com.example.myapplication.ui.data.remote.NetworkResponse
+import com.example.myapplication.ui.data.remote.User
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
-class SignUpViewModel: ViewModel() {
+class SignUpViewModel(val authUseCase: AuthUseCase): ViewModel() {
     var signUpState = mutableStateOf(SignUpState())
         private set
 
@@ -23,5 +30,39 @@ class SignUpViewModel: ViewModel() {
 
     fun setPassword(password: String){
         signUpState.value = signUpState.value.copy(password = password)
+    }
+
+    private fun setErrorMessage(message: String) {
+        signUpState.value = signUpState.value.copy(errorMessage = message)
+    }
+
+    private fun setLoading(isLoading: Boolean) {
+        signUpState.value = signUpState.value.copy(isLoading = true)
+    }
+
+    fun signUp(){
+        viewModelScope.launch {
+            val user = User(
+                userName = signUpState.value.name,
+                email = signUpState.value.email,
+                password = signUpState.value.password
+            )
+           val result = authUseCase.signUp(user)
+            result.collect { it ->
+                when(it){
+                    is NetworkResponse.Error -> {
+                        setErrorMessage(it.errorMessage)
+                    }
+                    is NetworkResponse.Success<*> -> {
+                        setLoading(false)
+                        signUpState.value  = signUpState.value.copy(isSignUp = true)
+                    }
+                    is NetworkResponse.Loading -> {
+                        setLoading(true)
+                    }
+                }
+            }
+
+        }
     }
 }

@@ -8,14 +8,20 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -23,6 +29,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.myapplication.R
+import com.example.myapplication.ui.data.domain.usecase.AuthUseCase
 import com.example.myapplication.ui.data.remote.RetrofitClient
 import com.example.myapplication.ui.data.remote.User
 import com.example.myapplication.ui.screen.component.AuthButton
@@ -33,9 +40,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Composable
-fun SignUpScrn() {
-    val signUpViewModel: SignUpViewModel = viewModel()
+fun SignUpScrn(authUseCase: AuthUseCase ,onNavigationToProfile: () -> Unit) {
+    val signUpViewModel = SignUpViewModel(authUseCase)
+    val snackBarHostState = remember { SnackbarHostState() }
+
     Scaffold(
+        snackbarHost = { SnackbarHost(snackBarHostState) },
         topBar = {
             Row(
                 modifier = Modifier
@@ -67,8 +77,23 @@ fun SignUpScrn() {
                 )
             }
         }
-    ) { paddingValues ->
+    )
+    {
+        paddingValues ->
         SignUpContent(paddingValues, signUpViewModel)
+
+        val registrationScreenState = signUpViewModel.signUpState
+        LaunchedEffect(registrationScreenState.value.isSignUp) {
+            if(registrationScreenState.value.isSignUp) {
+                onNavigationToProfile()
+            }
+        }
+
+        LaunchedEffect(registrationScreenState.value.errorMessage) {
+            registrationScreenState.value.errorMessage?.let {
+                snackBarHostState.showSnackbar(it)
+            }
+        }
     }
 }
 
@@ -134,12 +159,13 @@ fun SignUpContent(paddingValues: PaddingValues, signUpViewModel: SignUpViewModel
         AuthButton(onClick = {
             val user = User(userName = signUpState.value.name, email = signUpState.value.email, password = signUpState.value.password)
 
-            coroutine.launch {
-                RetrofitClient.retrofit.registration(user)
-            }
+            signUpViewModel.signUp()
+//            coroutine.launch {
+//                RetrofitClient.retrofit.registration(user)
+//            }
         }) {
             Text(stringResource(R.string.sign_up))
-
+            if(signUpState.value.isLoading)CircularProgressIndicator(color = Color.White)
         }
     }
 }
