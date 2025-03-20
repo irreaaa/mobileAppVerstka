@@ -25,16 +25,21 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
 
-            val authReposiatory = AuthRepository(RetrofitClient.retrofit)
+            val authRepository = AuthRepository(RetrofitClient.retrofit)
             val localStorage = LocalStorage(applicationContext)
-            val authUseCase = AuthUseCase(localStorage, authReposiatory )
+            val authUseCase = AuthUseCase(localStorage, authRepository )
 
             val navController = rememberNavController()
             MatuleTheme {
                 NavHost(navController, startDestination = SplashScreen){
 
                     composable<SplashScreen>{
-                        SplashScreen(){
+                        SplashScreen(
+                            authUseCase = authUseCase,
+                            onNavigationToProfileScreen = {
+                                navController.navigate(route = Profile)
+                            }
+                        ){
                             navController.navigate(route = Registration)
                         }
                     }
@@ -44,13 +49,9 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                     composable<Profile> {
-                        SplashScreen(){
-                            navController.navigate(route = Profile)
-                        }
+                        SignInScrn()
                     }
                 }
-//                SignUpScrn()
-                //RecoverPasswordScrn()
             }
         }
     }
