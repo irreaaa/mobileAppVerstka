@@ -4,10 +4,9 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myapplication.ui.data.AuthRepository
 import com.example.myapplication.ui.data.domain.usecase.AuthUseCase
+import com.example.myapplication.ui.data.remote.LoginRequest
 import com.example.myapplication.ui.data.remote.NetworkResponse
-import com.example.myapplication.ui.data.remote.User
 import kotlinx.coroutines.launch
 
 class SignInViewModel(val authUseCase: AuthUseCase): ViewModel() {
@@ -37,12 +36,11 @@ class SignInViewModel(val authUseCase: AuthUseCase): ViewModel() {
 
     fun signIn() {
         viewModelScope.launch {
-            val user = User(
-                userName = "",
+            val loginRequest = LoginRequest(
                 email = signInState.value.email,
                 password = signInState.value.password
             )
-            val result = authUseCase.signIn(user)
+            val result = authUseCase.signIn(loginRequest)
             result.collect{ it ->
                 when(it){
                     is NetworkResponse.Error ->{

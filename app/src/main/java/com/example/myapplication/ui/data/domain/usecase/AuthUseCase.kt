@@ -1,13 +1,12 @@
 package com.example.myapplication.ui.data.domain.usecase
 
-import androidx.collection.emptyIntSet
 import com.example.myapplication.ui.data.AuthRepository
 import com.example.myapplication.ui.data.local.LocalStorage
+import com.example.myapplication.ui.data.remote.LoginRequest
 import com.example.myapplication.ui.data.remote.NetworkResponse
 import com.example.myapplication.ui.data.remote.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
 
 class AuthUseCase(private val localStorage: LocalStorage,
                   private val authRepository: AuthRepository) {
@@ -30,10 +29,10 @@ class AuthUseCase(private val localStorage: LocalStorage,
             }
         }
 
-    suspend fun signIn(user: User): Flow<NetworkResponse> = flow {
+    suspend fun signIn(loginRequest: LoginRequest): Flow<NetworkResponse> = flow {
         try  {
             emit(NetworkResponse.Loading)
-            val result = authRepository.signIn(user)
+            val result = authRepository.signIn(loginRequest)
             localStorage.setToken(result.second)
             emit(NetworkResponse.Success(result))
         }

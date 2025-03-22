@@ -1,9 +1,8 @@
 package com.example.myapplication.ui.data
 
 import com.example.myapplication.ui.data.remote.Auth
-import com.example.myapplication.ui.data.remote.NetworkResponse
+import com.example.myapplication.ui.data.remote.LoginRequest
 import com.example.myapplication.ui.data.remote.User
-import com.example.myapplication.ui.data.remote.dto.request.RegistrationRequest
 import com.example.myapplication.ui.data.remote.dto.response.TokenResponse
 import kotlinx.coroutines.delay
 
@@ -12,9 +11,9 @@ class AuthRepository(private val api: Auth) {
         delay(3000)
         return api.registration(user)
     }
-    suspend fun signIn(user: User): TokenResponse {
+    suspend fun signIn(loginRequest: LoginRequest): TokenResponse {
         delay(3000)
-        return api.authorization(user)
+        return api.authorization(loginRequest)
     }
 
 }

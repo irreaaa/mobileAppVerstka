@@ -9,5 +9,5 @@ interface Auth {
     suspend fun registration(@Body user: User): TokenResponse
 
     @POST("/authorization")
-    suspend fun authorization(@Body user: User): TokenResponse
+    suspend fun authorization(@Body loginRequest: LoginRequest): TokenResponse
 }
