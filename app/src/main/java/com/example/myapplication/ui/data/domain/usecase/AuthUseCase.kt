@@ -29,4 +29,21 @@ class AuthUseCase(private val localStorage: LocalStorage,
                 emit(NetworkResponse.Error("Unknown Error"))
             }
         }
+
+    suspend fun signIn(user: User): Flow<NetworkResponse> = flow {
+        try  {
+            emit(NetworkResponse.Loading)
+            val result = authRepository.signIn(user)
+            localStorage.setToken(result.second)
+            emit(NetworkResponse.Success(result))
+        }
+        catch (e: Exception){
+            e.message?.let {
+                emit(NetworkResponse.Error(it))
+                return@flow
+            }
+            emit(NetworkResponse.Error("Unknown Error"))
+        }
     }
+}
+

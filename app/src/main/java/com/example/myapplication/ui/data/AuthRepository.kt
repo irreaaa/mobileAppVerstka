@@ -12,4 +12,9 @@ class AuthRepository(private val api: Auth) {
         delay(3000)
         return api.registration(user)
     }
+    suspend fun signIn(user: User): TokenResponse {
+        delay(3000)
+        return api.authorization(user)
+    }
+
 }

@@ -134,7 +134,8 @@ fun SignUpContent(paddingValues: PaddingValues, signUpViewModel: SignUpViewModel
             isError = false,
             placeholder = { Text(text = stringResource(R.string.password_template)) },
             supportingText = { Text(text = stringResource(R.string.incorrect_password)) },
-            label = { Text(text = stringResource(R.string.password)) }
+            label = { Text(text = stringResource(R.string.password)) },
+            isPasswordField = true
         )
 
         Row(

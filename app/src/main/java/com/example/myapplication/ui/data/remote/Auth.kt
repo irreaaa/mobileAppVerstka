@@ -7,4 +7,7 @@ import retrofit2.http.POST
 interface Auth {
     @POST("/registration")
     suspend fun registration(@Body user: User): TokenResponse
+
+    @POST("/authorization")
+    suspend fun authorization(@Body user: User): TokenResponse
 }

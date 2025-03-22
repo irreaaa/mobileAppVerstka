@@ -37,19 +37,23 @@ class MainActivity : ComponentActivity() {
                         SplashScreen(
                             authUseCase = authUseCase,
                             onNavigationToProfileScreen = {
-                                navController.navigate(route = Profile)
+                                navController.navigate(route = SignIn)
                             }
                         ){
+                            navController.navigate(route = SignIn)
+                        }
+                    }
+
+                    composable<SignIn> {
+                        SignInScrn(authUseCase){
                             navController.navigate(route = Registration)
                         }
                     }
+
                     composable<Registration>{
                         SignUpScrn(authUseCase){
                             navController.navigate(route = Profile)
                         }
-                    }
-                    composable<Profile> {
-                        SignInScrn()
                     }
                 }
             }
@@ -63,3 +67,5 @@ object SplashScreen
 object Registration
 @Serializable
 object Profile
+@Serializable
+object SignIn
