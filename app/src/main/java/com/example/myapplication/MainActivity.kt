@@ -69,3 +69,5 @@ object Registration
 object Profile
 @Serializable
 object SignIn
+@Serializable
+object Otp
