@@ -51,7 +51,7 @@ class MainActivity : ComponentActivity() {
                     }
 
                     composable<Registration>{
-                        SignUpScrn(authUseCase){
+                        SignUpScrn(){
                             navController.navigate(route = Profile)
                         }
                     }

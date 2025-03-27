@@ -41,6 +41,9 @@ android {
 }
 
 dependencies {
+    dependencies {
+        implementation("io.insert-koin:koin-androidx-compose:4.1.0-Beta5")
+
     implementation("androidx.datastore:datastore-preferences:1.1.3")
 
     implementation("androidx.navigation:navigation-compose:2.8.9")
@@ -69,4 +72,4 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-}
+}}

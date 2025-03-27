@@ -38,10 +38,11 @@ import com.example.myapplication.ui.screen.component.TitleWithSubtitleText
 import com.example.myapplication.ui.theme.MatuleTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun SignUpScrn(authUseCase: AuthUseCase ,onNavigationToProfile: () -> Unit) {
-    val signUpViewModel = SignUpViewModel(authUseCase)
+fun SignUpScrn(onNavigationToProfile: () -> Unit) {
+    val signUpViewModel: SignUpViewModel = koinViewModel()
     val snackBarHostState = remember { SnackbarHostState() }
 
     Scaffold(
