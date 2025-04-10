@@ -42,7 +42,7 @@ fun RecoverPasswordScrn(){
         },
     )
     {
-        paddingValues ->
+            paddingValues ->
         RecoverPasswordContent(paddingValues, recoverPasswordViewModel)
     }
 }

@@ -80,7 +80,7 @@ fun SignUpScrn(onNavigationToProfile: () -> Unit) {
         }
     )
     {
-        paddingValues ->
+            paddingValues ->
         SignUpContent(paddingValues, signUpViewModel)
 
         val registrationScreenState = signUpViewModel.signUpState

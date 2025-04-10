@@ -11,6 +11,7 @@ import com.example.myapplication.ui.data.AuthRepository
 import com.example.myapplication.ui.data.domain.usecase.AuthUseCase
 import com.example.myapplication.ui.data.local.LocalStorage
 import com.example.myapplication.ui.data.remote.RetrofitClient
+import com.example.myapplication.ui.screen.Otp.OtpScrn
 import com.example.myapplication.ui.screen.RecoverPassword.RecoverPasswordScrn
 import com.example.myapplication.ui.screen.SignIn.SignInScrn
 import com.example.myapplication.ui.screen.SignUp.SignUpScrn
@@ -40,6 +41,12 @@ class MainActivity : ComponentActivity() {
                                 navController.navigate(route = SignIn)
                             }
                         ){
+                            navController.navigate(route = Otp)
+                        }
+                    }
+
+                    composable<Otp> {
+                        OtpScrn {
                             navController.navigate(route = SignIn)
                         }
                     }

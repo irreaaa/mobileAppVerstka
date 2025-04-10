@@ -41,6 +41,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.runtime.livedata)
     dependencies {
         implementation("io.insert-koin:koin-androidx-compose:4.1.0-Beta5")
 

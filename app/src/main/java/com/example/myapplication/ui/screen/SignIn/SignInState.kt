@@ -7,4 +7,4 @@ data class SignInState (
     var isLoading: Boolean = false,
     var isSignIn: Boolean = false,
     var errorMessage: String? = null,
-    )
+)

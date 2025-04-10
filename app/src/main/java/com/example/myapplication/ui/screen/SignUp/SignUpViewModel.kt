@@ -47,7 +47,7 @@ class SignUpViewModel(val authUseCase: AuthUseCase): ViewModel() {
                 email = signUpState.value.email,
                 password = signUpState.value.password
             )
-           val result = authUseCase.signUp(user)
+            val result = authUseCase.signUp(user)
             result.collect { it ->
                 when(it){
                     is NetworkResponse.Error -> {

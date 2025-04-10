@@ -1,6 +1,8 @@
 package com.example.myapplication.ui.data.domain.usecase
 
 import com.example.myapplication.ui.data.AuthRepository
+import com.example.myapplication.ui.data.domain.EmailValidator
+import com.example.myapplication.ui.data.domain.PasswordValidator
 import com.example.myapplication.ui.data.local.LocalStorage
 import com.example.myapplication.ui.data.remote.LoginRequest
 import com.example.myapplication.ui.data.remote.NetworkResponse
@@ -14,20 +16,28 @@ class AuthUseCase(private val localStorage: LocalStorage,
         localStorage.tokenFlow
     }
     suspend fun signUp(user: User): Flow<NetworkResponse> = flow {
-            try  {
-                emit(NetworkResponse.Loading)
-                val result = authRepository.signUp(user)
-                localStorage.setToken(result.second)
-                emit(NetworkResponse.Success(result))
+        try  {
+            emit(NetworkResponse.Loading)
+            if(!EmailValidator.validate(user.email)) {
+                emit(NetworkResponse.Error("Email incorrect."))
+                return@flow
             }
-            catch (e: Exception){
-                e.message?.let {
-                    emit(NetworkResponse.Error(it))
-                    return@flow
-                }
-                emit(NetworkResponse.Error("Unknown Error"))
+            if(!PasswordValidator.validate(user.password)){
+                emit(NetworkResponse.Error("Password must contain at least 8 characters, Uppercase letter, number and special character.."))
+                return@flow
             }
+            val result = authRepository.signUp(user)
+            localStorage.setToken(result.second)
+            emit(NetworkResponse.Success(result))
         }
+        catch (e: Exception){
+            e.message?.let {
+                emit(NetworkResponse.Error(it))
+                return@flow
+            }
+            emit(NetworkResponse.Error("Unknown Error"))
+        }
+    }
 
     suspend fun signIn(loginRequest: LoginRequest): Flow<NetworkResponse> = flow {
         try  {
@@ -45,4 +55,3 @@ class AuthUseCase(private val localStorage: LocalStorage,
         }
     }
 }
-
