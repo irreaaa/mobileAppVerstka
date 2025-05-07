@@ -1,22 +1,19 @@
-package com.example.myapplication.ui.screen
+package com.example.myapplication.ui.screen.Welcome
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.DividerDefaults.color
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import com.example.myapplication.R
 import com.example.myapplication.ui.data.domain.usecase.AuthUseCase
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
 
 
 @Composable
@@ -32,8 +29,9 @@ fun SplashScreen(authUseCase: AuthUseCase,
         verticalArrangement = Arrangement.Center
     ){
         Image(
-            painter = painterResource(R.drawable.ic_launcher_foreground),
-            contentDescription = null)
+            painter = painterResource(R.drawable.matule_me),
+            contentDescription = null,
+            modifier = Modifier.scale(scaleX = 2.5f, scaleY = 2.5f))
         LaunchedEffect(Unit) {
             authUseCase.token.collect{
                 if(it != "") {

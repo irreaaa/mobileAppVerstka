@@ -79,7 +79,7 @@ fun RecoverPasswordContent(
                         modifier = Modifier
                             .size(50.dp)
                             .clip(CircleShape)
-                            .background(color = Color.Blue),
+                            .background(color = Color(0xFF48B2E7)),
                         contentAlignment = Alignment.Center
 
                     ){

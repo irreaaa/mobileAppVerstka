@@ -15,7 +15,7 @@ import com.example.myapplication.ui.screen.Otp.OtpScrn
 import com.example.myapplication.ui.screen.RecoverPassword.RecoverPasswordScrn
 import com.example.myapplication.ui.screen.SignIn.SignInScrn
 import com.example.myapplication.ui.screen.SignUp.SignUpScrn
-import com.example.myapplication.ui.screen.SplashScreen
+import com.example.myapplication.ui.screen.Welcome.SplashScreen
 import com.example.myapplication.ui.theme.MatuleTheme
 import kotlinx.serialization.Serializable
 
