@@ -41,24 +41,28 @@ class MainActivity : ComponentActivity() {
                                 navController.navigate(route = SignIn)
                             }
                         ){
-                            navController.navigate(route = Otp)
+                            navController.navigate(route = RecoverPassword)
                         }
                     }
 
-                    composable<Otp> {
-                        OtpScrn {
+                    composable<RecoverPassword> {
+                        RecoverPasswordScrn()
+                    }
+
+                    composable<Registration>{
+                        SignUpScrn(){
                             navController.navigate(route = SignIn)
                         }
                     }
 
                     composable<SignIn> {
                         SignInScrn(authUseCase){
-                            navController.navigate(route = Registration)
+                            navController.navigate(route = Otp)
                         }
                     }
 
-                    composable<Registration>{
-                        SignUpScrn(){
+                    composable<Otp> {
+                        OtpScrn {
                             navController.navigate(route = Profile)
                         }
                     }
@@ -74,6 +78,8 @@ object SplashScreen
 object Registration
 @Serializable
 object Profile
+@Serializable
+object RecoverPassword
 @Serializable
 object SignIn
 @Serializable

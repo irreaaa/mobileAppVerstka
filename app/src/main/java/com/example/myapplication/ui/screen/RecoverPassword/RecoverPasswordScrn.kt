@@ -1,5 +1,8 @@
 package com.example.myapplication.ui.screen.RecoverPassword
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -7,14 +10,24 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.myapplication.R
@@ -33,6 +46,7 @@ fun RecoverPasswordScrn(){
                     .fillMaxWidth()
                     .height(40.dp)
             )
+
             {
                 IconButton(onClick = {}) {
                     Icon(painter = painterResource(R.drawable.back_arrow),
@@ -52,6 +66,55 @@ fun RecoverPasswordContent(
     recoverPasswordViewModel: RecoverPasswordViewModel
 ){
     val recoverPasswordState = recoverPasswordViewModel.recoverPasswordState
+
+    if (recoverPasswordState.value.showDialog) {
+        AlertDialog(
+            onDismissRequest = { recoverPasswordViewModel.hideDialog() },
+            title = {
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(50.dp)
+                            .clip(CircleShape)
+                            .background(color = Color.Blue),
+                        contentAlignment = Alignment.Center
+
+                    ){
+                        Image(
+                            painter = painterResource(id = R.drawable.email_dialog),
+                            contentDescription = null,
+                            modifier = Modifier.size(25.dp),
+
+                        )
+                    }
+
+                    Text(
+                        text = "Проверьте Ваш Email",
+                        modifier = Modifier.padding(top = 18.dp),
+                        style = androidx.compose.material3.MaterialTheme.typography.titleMedium
+                    )
+
+                    Text(
+                        text = stringResource(R.string.recover_message),
+                        modifier = Modifier.fillMaxWidth().wrapContentWidth(),
+                        style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
+                        textAlign = TextAlign.Center
+                    )
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = { recoverPasswordViewModel.hideDialog() }) {
+                    Text("Ок")
+                }
+            }
+        )
+    }
+
+
+
     Column(
         modifier = Modifier.padding(top = 100.dp)
     )
@@ -81,7 +144,7 @@ fun RecoverPasswordContent(
             }
         )
         AuthButton(
-            onClick = {}
+            onClick = {recoverPasswordViewModel.showDialog()}
         ) {
             Text(stringResource(R.string.recover))
         }

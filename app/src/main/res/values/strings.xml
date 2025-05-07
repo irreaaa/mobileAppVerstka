@@ -9,6 +9,7 @@
     <string name="password">Пароль</string>
     <string name="star_password">********</string>
     <string name="recover">Восстановить</string>
+    <string name="recover_message">Мы Отправили Код Восстановления Пароля На Вашу Электронную Почту.</string>
     <string name="name">Ваше имя</string>
     <string name="xxxxxxxx">xxxxxxxx</string>
     <string name="enter_name">Введите имя</string>
