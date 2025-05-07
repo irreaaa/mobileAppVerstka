@@ -29,5 +29,10 @@
     <string name="otp_proverka">OTP Проверка</string>
     <string name="otp_text">Пожалуйста, Проверьте Свою Электронную Почту, Чтоб Увидеть Код Подтверждения</string>
     <string name="send_again">Отправить заново</string>
+    <string name="welcome">ДОБРО ПОЖАЛОВАТЬ</string>
+    <string name="welcome_page2_title">Начнем путешествие</string>
+    <string name="welcome_page2_desc">Умная, великолепная и модная коллекция Изучите сейчас</string>
+    <string name="welcome_page3_title">У Вас Есть Сила, Чтобы</string>
+    <string name="welcome_page3_desc">В вашей комнате много красивых и привлекательных растений</string>
 
 </resources>

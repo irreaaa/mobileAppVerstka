@@ -1,14 +1,17 @@
 package com.example.myapplication
 
+import SlidesScrn
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.myapplication.ui.data.AuthRepository
 import com.example.myapplication.ui.data.domain.usecase.AuthUseCase
+import com.example.myapplication.ui.data.local.DataStoreOnBoarding
 import com.example.myapplication.ui.data.local.LocalStorage
 import com.example.myapplication.ui.data.remote.RetrofitClient
 import com.example.myapplication.ui.screen.Otp.OtpScrn
@@ -28,6 +31,7 @@ class MainActivity : ComponentActivity() {
 
             val authRepository = AuthRepository(RetrofitClient.retrofit)
             val localStorage = LocalStorage(applicationContext)
+            val dataStore = DataStoreOnBoarding(LocalContext.current)
             val authUseCase = AuthUseCase(localStorage, authRepository )
 
             val navController = rememberNavController()
@@ -37,12 +41,21 @@ class MainActivity : ComponentActivity() {
                     composable<SplashScreen>{
                         SplashScreen(
                             authUseCase = authUseCase,
-                            onNavigationToProfileScreen = {
-                                navController.navigate(route = SignIn)
+                            onNavigationToSlidesScrn = {
+                                navController.navigate(route = Slides)
                             }
-                        ){
-                            navController.navigate(route = RecoverPassword)
-                        }
+                        ){}
+                    }
+
+                    composable<Slides> {
+                        SlidesScrn(
+                            onNavigateToSignInScrn = {
+                                navController.navigate(route = SignIn){
+                                    popUpTo(route = Slides) {inclusive = true}
+                                }
+                            },
+                            dataStore = dataStore
+                        )
                     }
 
                     composable<RecoverPassword> {
@@ -84,3 +97,5 @@ object RecoverPassword
 object SignIn
 @Serializable
 object Otp
+@Serializable
+object Slides

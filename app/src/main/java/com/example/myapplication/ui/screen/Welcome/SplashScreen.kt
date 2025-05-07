@@ -14,11 +14,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import com.example.myapplication.R
 import com.example.myapplication.ui.data.domain.usecase.AuthUseCase
+import kotlinx.coroutines.delay
 
 
 @Composable
 fun SplashScreen(authUseCase: AuthUseCase,
-                 onNavigationToProfileScreen: () -> Unit,
+                 onNavigationToSlidesScrn: () -> Unit,
                  onNavigationToRegistationScreen: () -> Unit
 ){
     Column(
@@ -33,13 +34,8 @@ fun SplashScreen(authUseCase: AuthUseCase,
             contentDescription = null,
             modifier = Modifier.scale(scaleX = 2.5f, scaleY = 2.5f))
         LaunchedEffect(Unit) {
-            authUseCase.token.collect{
-                if(it != "") {
-                    onNavigationToProfileScreen()
-                    return@collect
-                }
-                onNavigationToRegistationScreen()
-            }
+            delay(3000)
+            onNavigationToSlidesScrn()
         }
     }
 }
