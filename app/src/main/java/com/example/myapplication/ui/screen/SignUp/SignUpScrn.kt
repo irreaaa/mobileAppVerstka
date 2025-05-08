@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.screen.SignUp
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -17,6 +19,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -28,10 +31,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.myapplication.R
+import com.example.myapplication.Registration
+import com.example.myapplication.SignIn
 import com.example.myapplication.ui.data.domain.usecase.AuthUseCase
 import com.example.myapplication.ui.data.remote.RetrofitClient
 import com.example.myapplication.ui.data.remote.User
+import com.example.myapplication.ui.screen.SignIn.SignInScrn
 import com.example.myapplication.ui.screen.component.AuthButton
 import com.example.myapplication.ui.screen.component.AuthTextField
 import com.example.myapplication.ui.screen.component.TitleWithSubtitleText
@@ -41,7 +48,7 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun SignUpScrn(onNavigationToProfile: () -> Unit) {
+fun SignUpScrn(onNavigationToProfile: () -> Unit, navController: NavController) {
     val signUpViewModel: SignUpViewModel = koinViewModel()
     val snackBarHostState = remember { SnackbarHostState() }
 
@@ -73,6 +80,9 @@ fun SignUpScrn(onNavigationToProfile: () -> Unit) {
             ) {
                 Text(
                     text = stringResource(R.string.sign_in),
+                    modifier = Modifier.clickable {
+                        navController.navigate(route = SignIn)
+                    },
                     style = MatuleTheme.typography.bodyRegular16.copy(color = MatuleTheme.colors.text),
                     textAlign = TextAlign.Center
                 )
@@ -101,6 +111,9 @@ fun SignUpScrn(onNavigationToProfile: () -> Unit) {
 @Composable
 fun SignUpContent(paddingValues: PaddingValues, signUpViewModel: SignUpViewModel) {
     val signUpState = signUpViewModel.signUpState
+    val isChecked = remember { mutableStateOf(false) }
+    val passwordVisible = remember { mutableStateOf(false) }
+
     Column(
         modifier = Modifier.padding(paddingValues = paddingValues),
         verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -136,17 +149,18 @@ fun SignUpContent(paddingValues: PaddingValues, signUpViewModel: SignUpViewModel
             placeholder = { Text(text = stringResource(R.string.password_template)) },
             supportingText = { Text(text = stringResource(R.string.incorrect_password)) },
             label = { Text(text = stringResource(R.string.password)) },
-            isPasswordField = true
+            isPasswordField = true,
+            passwordVisible = passwordVisible.value,
+            onVisibilityChange = { passwordVisible.value = !passwordVisible.value }
         )
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.padding(horizontal = 20.dp)
         ) {
-            Icon(
-                painter = painterResource(R.drawable.policy_check),
-                contentDescription = null,
-                modifier = Modifier.height(18.dp)
+            Checkbox(
+                checked = isChecked.value,
+                onCheckedChange = { isChecked.value = it }
             )
             Text(
                 text = stringResource(R.string.privacy_policy),

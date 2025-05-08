@@ -28,9 +28,10 @@ fun AuthTextField(
     supportingText: @Composable () -> Unit,
     placeholder: @Composable () -> Unit,
     label: @Composable () -> Unit,
-    isPasswordField: Boolean = false
+    isPasswordField: Boolean = false,
+    passwordVisible: Boolean = false,
+    onVisibilityChange: () -> Unit = {}
 ){
-    val showPassword = remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
             .padding(horizontal = 20.dp)
@@ -44,16 +45,16 @@ fun AuthTextField(
             isError =  isError,
             supportingText = supportingText,
             placeHolder = placeholder,
-            visualTransformation = if (isPasswordField && !showPassword.value) {
+            visualTransformation = if (isPasswordField && !passwordVisible) {
                 PasswordVisualTransformation()
             } else {
                 VisualTransformation.None
             },
             trailingIcon = {
                 if (isPasswordField) {
-                    IconButton(onClick = { showPassword.value = !showPassword.value }) {
+                    IconButton(onClick = onVisibilityChange) {
                         Icon(
-                            imageVector = if (showPassword.value) {
+                            imageVector = if (passwordVisible) {
                                 Icons.Filled.Visibility
                             } else {
                                 Icons.Filled.VisibilityOff

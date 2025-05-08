@@ -217,10 +217,10 @@ fun SlidesScrn(
                     2 -> "Далее"
                     else -> ""
                 },
-                fontSize = 15.sp
+                fontSize = 18.sp
             )
         }
 
-        Spacer(modifier = Modifier.height(48.dp))
+        Spacer(modifier = Modifier.height(50.dp))
     }
 }

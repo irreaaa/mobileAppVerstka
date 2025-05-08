@@ -41,10 +41,14 @@ class MainActivity : ComponentActivity() {
                     composable<SplashScreen>{
                         SplashScreen(
                             authUseCase = authUseCase,
+                            dataStore = dataStore,
                             onNavigationToSlidesScrn = {
                                 navController.navigate(route = Slides)
+                            },
+                            onNavigationToRegistationScreen = {
+                                navController.navigate(route = SignIn)
                             }
-                        ){}
+                        )
                     }
 
                     composable<Slides> {
@@ -58,20 +62,27 @@ class MainActivity : ComponentActivity() {
                         )
                     }
 
+                    composable<SignIn> {
+                        SignInScrn(
+                            authUseCase = authUseCase,
+                            navController = navController,
+                            onSignInSuccess = {
+                                navController.navigate(route = Otp)
+                            }
+                        )
+                    }
+
                     composable<RecoverPassword> {
                         RecoverPasswordScrn()
                     }
 
-                    composable<Registration>{
-                        SignUpScrn(){
-                            navController.navigate(route = SignIn)
-                        }
-                    }
-
-                    composable<SignIn> {
-                        SignInScrn(authUseCase){
-                            navController.navigate(route = Otp)
-                        }
+                    composable<Registration> {
+                        SignUpScrn(
+                            onNavigationToProfile = {
+                                navController.navigate(route = Profile)
+                            },
+                            navController = navController
+                        )
                     }
 
                     composable<Otp> {

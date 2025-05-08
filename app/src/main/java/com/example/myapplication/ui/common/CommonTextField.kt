@@ -43,7 +43,9 @@ fun CommonTextField(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(14.dp))
-            .background(MatuleTheme.colors.background)
+            .background(MatuleTheme.colors.background),
+        visualTransformation = visualTransformation,
+        singleLine = true
     ){ innerTextField ->
         TextFieldDefaults.DecorationBox(
             value = value,

@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.screen.SignIn
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -17,6 +18,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -27,8 +29,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.myapplication.R
+import com.example.myapplication.RecoverPassword
+import com.example.myapplication.Registration
 import com.example.myapplication.ui.data.domain.usecase.AuthUseCase
+import com.example.myapplication.ui.screen.SignUp.SignUpScrn
 import com.example.myapplication.ui.screen.component.AuthButton
 import com.example.myapplication.ui.screen.component.AuthTextField
 import com.example.myapplication.ui.screen.component.TitleWithSubtitleText
@@ -36,9 +42,10 @@ import com.example.myapplication.ui.theme.MatuleTheme
 import kotlinx.coroutines.Dispatchers
 
 @Composable
-fun SignInScrn(authUseCase: AuthUseCase, onSignInSuccess: () -> Unit){
+fun SignInScrn(authUseCase: AuthUseCase, onSignInSuccess: () -> Unit, navController: NavController){
     val signInViewModel = SignInViewModel(authUseCase)
     val snackBarHostState = remember { SnackbarHostState() }
+
 
     Scaffold(
         snackbarHost = { SnackbarHost(snackBarHostState) },
@@ -66,14 +73,17 @@ fun SignInScrn(authUseCase: AuthUseCase, onSignInSuccess: () -> Unit){
                     .height(40.dp)
             ) {
                 Text(
-                    text = stringResource(R.string.sign_up),
+                    text = stringResource(R.string.sign_up_first),
+                    modifier = Modifier.clickable {
+                        navController.navigate(route = Registration)
+                    },
                     style = MatuleTheme.typography.bodyRegular16.copy(color = MatuleTheme.colors.text),
                     textAlign = TextAlign.Center
                 )
             }
         }
     ) { paddingValues ->
-        SignInContent(paddingValues, signInViewModel)
+        SignInContent(paddingValues, signInViewModel, navController)
 
         val authorizationScreenState = signInViewModel.signInState
         LaunchedEffect(authorizationScreenState.value.isSignIn) {
@@ -91,8 +101,10 @@ fun SignInScrn(authUseCase: AuthUseCase, onSignInSuccess: () -> Unit){
 }
 
 @Composable
-fun SignInContent(paddingValues: PaddingValues, signInViewModel: SignInViewModel){
+fun SignInContent(paddingValues: PaddingValues, signInViewModel: SignInViewModel, navController: NavController){
     val signInState = signInViewModel.signInState
+    val passwordVisible = remember { mutableStateOf(false) }
+
     Column(
         modifier = Modifier.padding(paddingValues = paddingValues),
         verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -134,14 +146,31 @@ fun SignInContent(paddingValues: PaddingValues, signInViewModel: SignInViewModel
             label = {
                 Text(text = stringResource(R.string.password))
             },
-            isPasswordField = true
+            isPasswordField = true,
+            passwordVisible = passwordVisible.value,
+            onVisibilityChange = { passwordVisible.value = !passwordVisible.value }
         )
+
+        Text(
+            text = stringResource(R.string.miss_pass),
+            modifier = Modifier
+                .clickable {
+                    navController.navigate(route = RecoverPassword)
+                }
+                .padding(horizontal = 25.dp)
+                .fillMaxWidth(),
+            style = MatuleTheme.typography.bodyRegular16.copy(
+                color = MatuleTheme.colors.subTextDark,
+                textAlign = TextAlign.End
+            )
+        )
+
         AuthButton(
             onClick = {
                 signInViewModel.signIn()
             }
         ) {
-            Text(stringResource(R.string.sign_in))
+            Text(stringResource(R.string.enter))
             if(signInState.value.isLoading) CircularProgressIndicator(color = Color.White)
         }
     }
