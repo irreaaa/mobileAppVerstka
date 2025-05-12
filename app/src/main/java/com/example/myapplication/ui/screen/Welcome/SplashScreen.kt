@@ -17,13 +17,16 @@ import com.example.myapplication.ui.data.domain.usecase.AuthUseCase
 import com.example.myapplication.ui.data.local.DataStoreOnBoarding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
 
 
 @Composable
 fun SplashScreen(authUseCase: AuthUseCase,
                  dataStore: DataStoreOnBoarding,
-                 onNavigationToSlidesScrn: () -> Unit,
-                 onNavigationToRegistationScreen: () -> Unit
+                 //onNavigationToSlidesScrn: () -> Unit,
+                 //onNavigationToRegistationScreen: () -> Unit,
+                 //onNavigationToHome: () -> Unit,
+                 onNavigateToSignIn: () -> Unit
 ){
     Column(
         modifier = Modifier
@@ -36,16 +39,30 @@ fun SplashScreen(authUseCase: AuthUseCase,
             painter = painterResource(R.drawable.matule_me),
             contentDescription = null,
             modifier = Modifier.scale(scaleX = 2.5f, scaleY = 2.5f))
+//        LaunchedEffect(Unit) {
+//            delay(3000)
+//
+//            val completed = dataStore.onBoardingCompleted.first()
+//
+//            if (completed) {
+//                onNavigationToRegistationScreen()
+//            } else {
+//                onNavigationToSlidesScrn()
+//            }
+//        }
         LaunchedEffect(Unit) {
             delay(3000)
 
-            val completed = dataStore.onBoardingCompleted.first()
+            val completed = dataStore.onBoardingCompleted.firstOrNull() ?: false
 
             if (completed) {
-                onNavigationToRegistationScreen()
+                onNavigateToSignIn()
+                //onNavigationToRegistationScreen()
             } else {
-                onNavigationToSlidesScrn()
+                onNavigateToSignIn()
+                //onNavigationToRegistationScreen()
             }
         }
+
     }
 }

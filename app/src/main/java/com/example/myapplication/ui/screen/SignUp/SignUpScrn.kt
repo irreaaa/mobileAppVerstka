@@ -39,6 +39,7 @@ import com.example.myapplication.ui.data.domain.usecase.AuthUseCase
 import com.example.myapplication.ui.data.remote.RetrofitClient
 import com.example.myapplication.ui.data.remote.User
 import com.example.myapplication.ui.screen.SignIn.SignInScrn
+import com.example.myapplication.ui.screen.SignIn.SignInViewModel
 import com.example.myapplication.ui.screen.component.AuthButton
 import com.example.myapplication.ui.screen.component.AuthTextField
 import com.example.myapplication.ui.screen.component.TitleWithSubtitleText
@@ -175,7 +176,7 @@ fun SignUpContent(paddingValues: PaddingValues, signUpViewModel: SignUpViewModel
         AuthButton(onClick = {
             val user = User(userName = signUpState.value.name, email = signUpState.value.email, password = signUpState.value.password)
 
-            signUpViewModel.signUp()
+            //signUpViewModel.signUp()
 //            coroutine.launch {
 //                RetrofitClient.retrofit.registration(user)
 //            }

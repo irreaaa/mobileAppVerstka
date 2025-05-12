@@ -40,22 +40,24 @@ class SignUpViewModel(val authUseCase: AuthUseCase): ViewModel() {
         signUpState.value = signUpState.value.copy(isLoading = true)
     }
 
-    fun signUp(){
+    fun signUp(onSuccess: () -> Unit){
         viewModelScope.launch {
             val user = User(
                 userName = signUpState.value.name,
                 email = signUpState.value.email,
                 password = signUpState.value.password
             )
-            val result = authUseCase.signUp(user)
-            result.collect { it ->
-                when(it){
+
+            authUseCase.signUp(user).collect { response ->
+                when(response) {
                     is NetworkResponse.Error -> {
-                        setErrorMessage(it.errorMessage)
-                    }
-                    is NetworkResponse.Success<*> -> {
                         setLoading(false)
-                        signUpState.value  = signUpState.value.copy(isSignUp = true)
+                        setErrorMessage(response.errorMessage)
+                    }
+                    is NetworkResponse.Success -> {
+                        setLoading(false)
+                        signUpState.value = signUpState.value.copy(isSignedIn = true)
+                        onSuccess()
                     }
                     is NetworkResponse.Loading -> {
                         setLoading(true)

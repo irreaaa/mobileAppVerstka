@@ -42,7 +42,11 @@ android {
 
 dependencies {
     implementation(libs.androidx.runtime.livedata)
+    implementation(libs.androidx.benchmark.macro)
     dependencies {
+        implementation ("com.squareup.okhttp3:okhttp:4.9.3")
+        implementation ("com.squareup.okhttp3:logging-interceptor:4.9.3")
+        implementation("com.squareup.retrofit2:converter-kotlinx-serialization:2.11.0")
         implementation("io.insert-koin:koin-androidx-compose:4.1.0-Beta5")
 
     implementation("androidx.datastore:datastore-preferences:1.1.3")

@@ -40,10 +40,11 @@ import com.example.myapplication.ui.screen.component.AuthTextField
 import com.example.myapplication.ui.screen.component.TitleWithSubtitleText
 import com.example.myapplication.ui.theme.MatuleTheme
 import kotlinx.coroutines.Dispatchers
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun SignInScrn(authUseCase: AuthUseCase, onSignInSuccess: () -> Unit, navController: NavController){
-    val signInViewModel = SignInViewModel(authUseCase)
+fun SignInScrn(onSignInSuccess: () -> Unit, navController: NavController){
+    val signInViewModel: SignInViewModel = koinViewModel()
     val snackBarHostState = remember { SnackbarHostState() }
 
 

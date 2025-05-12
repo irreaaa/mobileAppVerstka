@@ -8,4 +8,5 @@ data class SignUpState (
     var isLoading: Boolean = false,
     var isSignUp: Boolean = false,
     var errorMessage: String? = null,
+    var isSignedIn: Boolean = false,
 )

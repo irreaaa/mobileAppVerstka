@@ -1,7 +1,7 @@
 package com.example.myapplication.ui.data.remote
 
-sealed class NetworkResponse {
-    data class Success<T>(val data: T): NetworkResponse()
-    data object Loading: NetworkResponse()
-    data class Error(val errorMessage: String): NetworkResponse()
+sealed class NetworkResponse<out T> {
+    data class Success<out T>(val data: T) : NetworkResponse<T>()
+    data object Loading : NetworkResponse<Nothing>()
+    data class Error(val errorMessage: String) : NetworkResponse<Nothing>()
 }
