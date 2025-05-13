@@ -19,10 +19,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.myapplication.Favourite
 import com.example.myapplication.R
 import com.example.myapplication.ui.data.remote.NetworkResponseSneakers
 import com.example.myapplication.ui.data.remote.dto.response.SneakersResponse
-import com.example.myapplication.ui.screen.Home.PopularViewModel
 import com.example.myapplication.ui.screen.Home.ProductItem
 import org.koin.androidx.compose.koinViewModel
 
@@ -44,7 +44,7 @@ fun PopularScrn(navController: NavController, viewModel: PopularViewModel = koin
                     Text(
                         text = "Популярное",
                         fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = FontWeight.Medium,
                         color = Color.Black
                     )
                 },
@@ -57,23 +57,20 @@ fun PopularScrn(navController: NavController, viewModel: PopularViewModel = koin
                     ) {
                         Icon(
                             painter = painterResource(id = R.drawable.back_arrow),
-                            contentDescription = "",
-                            tint = Color.Black,
-                            modifier = Modifier.padding(6.dp),
-
+                            contentDescription = null
                             )
                     }
                 },
                 actions = {
                     IconButton(
-                        onClick = { navController.navigate("favorite") },
+                        onClick = { navController.navigate(route = Favourite) },
                         modifier = Modifier
                             .size(36.dp)
                             .background(Color.White, shape = CircleShape)
                     ) {
                         Icon(
                             painter = painterResource(id = R.drawable.heart),
-                            contentDescription = "",
+                            contentDescription = null,
                             tint = Color.Black,
                             modifier = Modifier.padding(6.dp)
                         )
@@ -87,7 +84,7 @@ fun PopularScrn(navController: NavController, viewModel: PopularViewModel = koin
                 PopularContent(
                     sneakers = (sneakersState as NetworkResponseSneakers.Success).data,
                     onFavoriteClick = viewModel::toggleFavorite,
-                    onAddToCart = { /* handle */ },
+                    onAddToCart = {},
                     navController = navController,
                     modifier = Modifier.padding(paddingValues)
                 )

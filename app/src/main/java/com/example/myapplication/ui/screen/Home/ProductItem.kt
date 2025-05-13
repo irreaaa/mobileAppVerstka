@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -50,8 +51,8 @@ fun ProductItem(
         modifier = modifier
             .height(240.dp)
             .clip(RoundedCornerShape(12.dp))
-            .background(Color.White),
-        //.clickable(onClick = onItemClick),
+            .background(Color.White)
+            .clickable(onClick = onItemClick),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         Box(
@@ -64,14 +65,14 @@ fun ProductItem(
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(180.dp)
+                    .height(150.dp)
                     .clip(RoundedCornerShape(12.dp)),
                 contentScale = ContentScale.Crop
             )
 
             IconButton(
                 onClick = {
-                    //onFavoriteClick(sneaker.id, !sneaker.isFavorite)
+                    onFavoriteClick(sneaker.id, !sneaker.isFavorite)
                 },
                 modifier = Modifier
                     .align(Alignment.TopEnd)
@@ -79,12 +80,11 @@ fun ProductItem(
             ) {
                 Image(
                     painter = painterResource(
-//                        if (sneaker.isFavorite) R.drawable.red_heart
-//                        else R.drawable.heart
-                        R.drawable.heart
+                        if (sneaker.isFavorite) R.drawable.red_heart
+                        else R.drawable.empty_heart
                     ),
-                    contentDescription = "",
-                    //modifier = Modifier.size(24.dp)
+                    contentDescription = null,
+                    modifier = Modifier.size(24.dp)
                 )
             }
         }
@@ -129,11 +129,12 @@ fun ProductItem(
 
                 IconButton(
                     onClick = onAddToCart,
-                    //modifier = Modifier.size(36.dp)
+                    modifier = Modifier.size(36.dp)
                 ) {
                     Image(
                         painter = painterResource(R.drawable.add),
-                        contentDescription = ""
+                        contentDescription = null,
+                        modifier = Modifier.size(20.dp)
                     )
                 }
             }

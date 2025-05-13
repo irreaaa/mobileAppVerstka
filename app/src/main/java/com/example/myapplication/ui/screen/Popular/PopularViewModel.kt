@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.screen.Home
+package com.example.myapplication.ui.screen.Popular
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

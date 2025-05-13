@@ -40,7 +40,7 @@ fun TopPanel(title: String,
         ) {
             Icon(
                 painter = menuImage,
-                contentDescription = ""
+                contentDescription = null
             )
         }
 
@@ -59,7 +59,7 @@ fun TopPanel(title: String,
         ) {
             Image(
                 painter = basketImage,
-                contentDescription = "",
+                contentDescription = null,
                 modifier = Modifier.size(100.dp)
             )
         }

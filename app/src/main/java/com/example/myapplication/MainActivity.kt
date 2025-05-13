@@ -9,13 +9,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.myapplication.ui.data.AuthRepository
 import com.example.myapplication.ui.data.domain.usecase.AuthUseCase
 import com.example.myapplication.ui.data.local.DataStoreOnBoarding
-import com.example.myapplication.ui.data.local.LocalStorage
-import com.example.myapplication.ui.data.remote.AuthInterceptor
-import com.example.myapplication.ui.data.remote.RetrofitClient
+import com.example.myapplication.ui.screen.Favourite.FavoriteScrn
 import com.example.myapplication.ui.screen.Home.HomeScreen
+import com.example.myapplication.ui.screen.Listing.ListingScrn
 import com.example.myapplication.ui.screen.Otp.OtpScrn
 import com.example.myapplication.ui.screen.Popular.PopularScrn
 import com.example.myapplication.ui.screen.RecoverPassword.RecoverPasswordScrn
@@ -85,17 +83,17 @@ class MainActivity : ComponentActivity() {
                     composable<Registration> {
                         SignUpScrn(
                             onNavigationToProfile = {
-                                navController.navigate(route = Profile)
+                                navController.navigate(route = Home)
                             },
                             navController = navController
                         )
                     }
-//
-//                    composable<Otp> {
-//                        OtpScrn {
-//                            navController.navigate(route = Profile)
-//                        }
-//                    }
+
+                    composable<Otp> {
+                        OtpScrn {
+                            navController.navigate(route = Home)
+                        }
+                    }
 
                     composable<Home> {
                         HomeScreen(
@@ -104,6 +102,14 @@ class MainActivity : ComponentActivity() {
 
                     composable<Popular> {
                         PopularScrn(navController)
+                    }
+
+                    composable<Favourite> {
+                        FavoriteScrn(navController)
+                    }
+
+                    composable<Listing> {
+                        ListingScrn(navController)
                     }
                 }
             }
@@ -129,3 +135,7 @@ object Slides
 object Home
 @Serializable
 object Popular
+@Serializable
+object Favourite
+@Serializable
+object Listing

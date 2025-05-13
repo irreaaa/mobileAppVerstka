@@ -43,10 +43,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.myapplication.Listing
 import com.example.myapplication.Popular
 import com.example.myapplication.R
 import com.example.myapplication.ui.data.remote.NetworkResponseSneakers
 import com.example.myapplication.ui.data.remote.dto.response.SneakersResponse
+import com.example.myapplication.ui.screen.Popular.PopularViewModel
 import com.example.myapplication.ui.screen.component.BottomProfile
 import com.example.myapplication.ui.screen.component.TopPanel
 import com.example.myapplication.ui.theme.MatuleTheme
@@ -140,7 +142,7 @@ fun HomeScreenContent(paddingValues: PaddingValues, viewModel: PopularViewModel,
                     Button(
                         onClick = {
                             when (category) {
-                                //"Outdoor" -> navController.navigate(Screen.Outdoor.route)
+                                "Outdoor" -> navController.navigate(route = Listing)
                             }
                         },
                         modifier = Modifier
@@ -195,10 +197,10 @@ fun HomeScreenContent(paddingValues: PaddingValues, viewModel: PopularViewModel,
                             ProductItem(
                                 sneaker = sneaker,
                                 onItemClick = {
-//                                    navController.navigate("details/${sneaker.id}")
+                                    navController.navigate("details/${sneaker.id}")
                                 },
                                 onFavoriteClick = { id, isFavorite ->
-//                                    viewModel.toggleFavorite(id, isFavorite)
+                                    viewModel.toggleFavorite(id, isFavorite)
                                 },
                                 onAddToCart = {
 
