@@ -1,6 +1,11 @@
 package com.example.myapplication.ui.data.remote.dto.response
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class TokenResponse (
-    val first: String,
-    val second: String,
+    val token: String,
+    val userId: Int,
+    val userName: String,
+    val email: String
 )

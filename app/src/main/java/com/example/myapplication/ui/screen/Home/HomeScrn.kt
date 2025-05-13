@@ -44,28 +44,28 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.myapplication.R
-import com.example.myapplication.ui.data.domain.usecase.AuthUseCase
 import com.example.myapplication.ui.data.remote.NetworkResponseSneakers
+import com.example.myapplication.ui.data.remote.dto.response.SneakersResponse
 import com.example.myapplication.ui.screen.component.BottomProfile
 import com.example.myapplication.ui.screen.component.TopPanel
 import com.example.myapplication.ui.theme.MatuleTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun HomeScreen(navController: NavController, authUseCase: AuthUseCase) {
-    val popularViewModel = PopularViewModel(authUseCase);
+fun HomeScreen(navController: NavController) {
+    val popularViewModel: PopularViewModel = koinViewModel<PopularViewModel>()
 
     Scaffold(
         topBar = {
             TopPanel(title = "Главная",
-            menuImage = painterResource(R.drawable.menu),
-            basketImage = painterResource(R.drawable.top_baskett),
-            textSize = 40
+                menuImage = painterResource(R.drawable.menu),
+                basketImage = painterResource(R.drawable.top_baskett),
+                textSize = 40
             )
         },
         bottomBar = { BottomProfile(navController) }
     ){
-        paddingValues -> HomeScreenContent(paddingValues, popularViewModel)
+            paddingValues -> HomeScreenContent(paddingValues, popularViewModel)
     }
 }
 
@@ -158,9 +158,9 @@ fun HomeScreenContent(paddingValues: PaddingValues, viewModel: PopularViewModel)
             }
         }
 
-        when (val state = sneakersState) {
+        when (sneakersState) {
             is NetworkResponseSneakers.Success -> {
-                val sneakers = state.data
+                val sneakers = (sneakersState as NetworkResponseSneakers.Success<List<SneakersResponse>>).data
                 Column(
                     modifier = Modifier.padding(horizontal = 20.dp, vertical = 24.dp)
                 ) {
@@ -176,7 +176,7 @@ fun HomeScreenContent(paddingValues: PaddingValues, viewModel: PopularViewModel)
                         Text(
                             text = "Все",
                             modifier = Modifier.clickable {
-                                //navController.navigate(Screen.Popular.route)
+//                                navController.navigate(Screen.Popular.route)
                             },
                             fontSize = 12.sp,
                             color = MatuleTheme.colors.accent
@@ -191,12 +191,14 @@ fun HomeScreenContent(paddingValues: PaddingValues, viewModel: PopularViewModel)
                             ProductItem(
                                 sneaker = sneaker,
                                 onItemClick = {
-
+//                                    navController.navigate("details/${sneaker.id}")
                                 },
                                 onFavoriteClick = { id, isFavorite ->
-                                    //viewModel.toggleFavorite(id, isFavorite)
+//                                    viewModel.toggleFavorite(id, isFavorite)
                                 },
-                                onAddToCart = {},
+                                onAddToCart = {
+
+                                },
                                 modifier = Modifier.width(160.dp)
                             )
                         }
@@ -211,7 +213,7 @@ fun HomeScreenContent(paddingValues: PaddingValues, viewModel: PopularViewModel)
                     )
                 }
             }
-            NetworkResponseSneakers.Loading -> {
+            is NetworkResponseSneakers.Loading -> {
                 Box(modifier = Modifier.fillMaxWidth()) {
                     CircularProgressIndicator(
                         modifier = Modifier.align(Alignment.Center)

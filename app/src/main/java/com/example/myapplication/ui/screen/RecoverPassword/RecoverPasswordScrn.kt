@@ -30,13 +30,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.myapplication.R
+import com.example.myapplication.SignIn
+import com.example.myapplication.ui.screen.SignIn.SignInScrn
 import com.example.myapplication.ui.screen.component.AuthButton
 import com.example.myapplication.ui.screen.component.AuthTextField
 import com.example.myapplication.ui.screen.component.TitleWithSubtitleText
 
 @Composable
-fun RecoverPasswordScrn(){
+fun RecoverPasswordScrn(navController: NavController){
     val recoverPasswordViewModel: RecoverPasswordViewModel = viewModel()
     Scaffold(
         topBar = {
@@ -48,7 +51,7 @@ fun RecoverPasswordScrn(){
             )
 
             {
-                IconButton(onClick = {}) {
+                IconButton(onClick = {navController.navigate(route = SignIn)}) {
                     Icon(painter = painterResource(R.drawable.back_arrow),
                         contentDescription = null)
                 }

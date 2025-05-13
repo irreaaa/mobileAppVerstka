@@ -31,7 +31,7 @@ class AuthRepository(private val api: Auth) {
 
     suspend fun getPopularSneakers(): NetworkResponseSneakers<List<SneakersResponse>> {
         return try {
-            val result = api.getPopularSneakers()
+            val result = api.popular()
             NetworkResponseSneakers.Success(result)
         } catch (e: Exception) {
             NetworkResponseSneakers.Error(e.message ?: "Unknown Error")

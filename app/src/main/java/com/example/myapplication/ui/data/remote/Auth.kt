@@ -14,7 +14,7 @@ interface Auth {
     @POST("/registration")
     suspend fun registration(@Body user: User): TokenResponse
 
-    @POST("/authorization")
+    @POST("/login")
     suspend fun authorization(@Body loginRequest: LoginRequest): TokenResponse
 
     @GET("/allSneakers")

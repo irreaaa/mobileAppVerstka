@@ -37,9 +37,10 @@ class PopularViewModel(
         viewModelScope.launch {
             _sneakersState.value = NetworkResponseSneakers.Loading
             try {
-                val result = authUseCase.getPopularSneakers()
-                when(result) {
-                    is NetworkResponseSneakers.Success<*> -> {
+                when(val result = authUseCase.getPopularSneakers()) {
+                    is NetworkResponseSneakers.Success -> {
+                        Log.d("DATA", "Type: ${result.data?.javaClass?.name}")
+                        Log.d("DATA", "Items count: ${(result.data as? List<*>)?.size}")
                         Log.d("DATA", "Received items: ${result.data}")
                         _sneakersState.value = result
                     }
@@ -57,7 +58,7 @@ class PopularViewModel(
     fun toggleFavorite(sneakerId: Int, isFavorite: Boolean) {
         viewModelScope.launch {
             when (val result = authUseCase.toggleFavorite(sneakerId, isFavorite)) {
-                is NetworkResponse.Success<*> -> {
+                is NetworkResponse.Success -> {
                     fetchFavorites()
                     fetchSneakers()
                 }

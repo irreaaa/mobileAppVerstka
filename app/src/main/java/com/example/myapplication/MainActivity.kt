@@ -77,18 +77,18 @@ class MainActivity : ComponentActivity() {
                         )
                     }
 //
-//                    composable<RecoverPassword> {
-//                        RecoverPasswordScrn()
-//                    }
+                    composable<RecoverPassword> {
+                        RecoverPasswordScrn(navController)
+                    }
 //
-//                    composable<Registration> {
-//                        SignUpScrn(
-//                            onNavigationToProfile = {
-//                                navController.navigate(route = Profile)
-//                            },
-//                            navController = navController
-//                        )
-//                    }
+                    composable<Registration> {
+                        SignUpScrn(
+                            onNavigationToProfile = {
+                                navController.navigate(route = Profile)
+                            },
+                            navController = navController
+                        )
+                    }
 //
 //                    composable<Otp> {
 //                        OtpScrn {
@@ -98,8 +98,7 @@ class MainActivity : ComponentActivity() {
 
                     composable<Home> {
                         HomeScreen(
-                            navController,
-                            authUseCase)
+                            navController)
                     }
                 }
             }

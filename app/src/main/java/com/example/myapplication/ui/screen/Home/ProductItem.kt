@@ -44,14 +44,14 @@ fun ProductItem(
     onAddToCart: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Log.d("ProductItem", "Отображаем: ${sneaker.name}, избранное: ${sneaker.isFavorite}, image: ${sneaker.imageUrl}")
+    Log.d("ProductItem", "Отображаем: ${sneaker.name}, избранное:, image: ${sneaker.imageUrl}")
 
     Column(
         modifier = modifier
             .height(240.dp)
             .clip(RoundedCornerShape(12.dp))
             .background(Color.White),
-            //.clickable(onClick = onItemClick),
+        //.clickable(onClick = onItemClick),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         Box(
@@ -79,8 +79,9 @@ fun ProductItem(
             ) {
                 Image(
                     painter = painterResource(
-                        if (sneaker.isFavorite) R.drawable.red_heart
-                        else R.drawable.heart
+//                        if (sneaker.isFavorite) R.drawable.red_heart
+//                        else R.drawable.heart
+                        R.drawable.heart
                     ),
                     contentDescription = "",
                     //modifier = Modifier.size(24.dp)

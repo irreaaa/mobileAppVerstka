@@ -23,9 +23,9 @@ import kotlinx.coroutines.flow.firstOrNull
 @Composable
 fun SplashScreen(authUseCase: AuthUseCase,
                  dataStore: DataStoreOnBoarding,
-                 //onNavigationToSlidesScrn: () -> Unit,
-                 //onNavigationToRegistationScreen: () -> Unit,
-                 //onNavigationToHome: () -> Unit,
+    //onNavigationToSlidesScrn: () -> Unit,
+    //onNavigationToRegistationScreen: () -> Unit,
+    //onNavigationToHome: () -> Unit,
                  onNavigateToSignIn: () -> Unit
 ){
     Column(

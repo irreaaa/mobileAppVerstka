@@ -174,12 +174,12 @@ fun SignUpContent(paddingValues: PaddingValues, signUpViewModel: SignUpViewModel
         }
         val coroutine = rememberCoroutineScope{Dispatchers.IO}
         AuthButton(onClick = {
-            val user = User(userName = signUpState.value.name, email = signUpState.value.email, password = signUpState.value.password)
+//            val user = User(userName = signUpState.value.name, email = signUpState.value.email, password = signUpState.value.password)
 
-            //signUpViewModel.signUp()
-//            coroutine.launch {
+            signUpViewModel.signUp();
+            coroutine.launch {
 //                RetrofitClient.retrofit.registration(user)
-//            }
+            }
         }) {
             Text(stringResource(R.string.sign_up))
             if(signUpState.value.isLoading)CircularProgressIndicator(color = Color.White)
