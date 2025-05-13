@@ -43,6 +43,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.myapplication.Popular
 import com.example.myapplication.R
 import com.example.myapplication.ui.data.remote.NetworkResponseSneakers
 import com.example.myapplication.ui.data.remote.dto.response.SneakersResponse
@@ -65,12 +66,12 @@ fun HomeScreen(navController: NavController) {
         },
         bottomBar = { BottomProfile(navController) }
     ){
-            paddingValues -> HomeScreenContent(paddingValues, popularViewModel)
+            paddingValues -> HomeScreenContent(paddingValues, popularViewModel, navController)
     }
 }
 
 @Composable
-fun HomeScreenContent(paddingValues: PaddingValues, viewModel: PopularViewModel) {
+fun HomeScreenContent(paddingValues: PaddingValues, viewModel: PopularViewModel, navController: NavController) {
     val message = remember { mutableStateOf("") }
     val sneakersState by viewModel.sneakersState.collectAsState()
     LaunchedEffect(Unit) {
@@ -158,11 +159,13 @@ fun HomeScreenContent(paddingValues: PaddingValues, viewModel: PopularViewModel)
             }
         }
 
+        Spacer(modifier = Modifier.height(32.dp))
+
         when (sneakersState) {
             is NetworkResponseSneakers.Success -> {
                 val sneakers = (sneakersState as NetworkResponseSneakers.Success<List<SneakersResponse>>).data
                 Column(
-                    modifier = Modifier.padding(horizontal = 20.dp, vertical = 24.dp)
+                    modifier = Modifier.padding(start = 4.dp)
                 ) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -170,13 +173,14 @@ fun HomeScreenContent(paddingValues: PaddingValues, viewModel: PopularViewModel)
                     ) {
                         Text(
                             text = "Популярное",
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Normal
+                            fontWeight = FontWeight.Medium,
+                            fontSize = 18.sp,
+                            modifier = Modifier.padding(bottom = 15.dp)
                         )
                         Text(
                             text = "Все",
                             modifier = Modifier.clickable {
-//                                navController.navigate(Screen.Popular.route)
+                                navController.navigate(route = Popular)
                             },
                             fontSize = 12.sp,
                             color = MatuleTheme.colors.accent
@@ -184,7 +188,7 @@ fun HomeScreenContent(paddingValues: PaddingValues, viewModel: PopularViewModel)
                     }
 
                     LazyRow(
-                        modifier = Modifier.padding(top = 16.dp),
+                        modifier = Modifier.padding(top = 2.dp),
                         horizontalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
                         items(sneakers) { sneaker ->
@@ -221,6 +225,8 @@ fun HomeScreenContent(paddingValues: PaddingValues, viewModel: PopularViewModel)
                 }
             }
         }
+
+        Spacer(modifier = Modifier.height(32.dp))
 
         Column(modifier = Modifier.padding(bottom = 30.dp)) {
             Row(

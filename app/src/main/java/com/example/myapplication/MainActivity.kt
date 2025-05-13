@@ -17,6 +17,7 @@ import com.example.myapplication.ui.data.remote.AuthInterceptor
 import com.example.myapplication.ui.data.remote.RetrofitClient
 import com.example.myapplication.ui.screen.Home.HomeScreen
 import com.example.myapplication.ui.screen.Otp.OtpScrn
+import com.example.myapplication.ui.screen.Popular.PopularScrn
 import com.example.myapplication.ui.screen.RecoverPassword.RecoverPasswordScrn
 import com.example.myapplication.ui.screen.SignIn.SignInScrn
 import com.example.myapplication.ui.screen.SignUp.SignUpScrn
@@ -100,6 +101,10 @@ class MainActivity : ComponentActivity() {
                         HomeScreen(
                             navController)
                     }
+
+                    composable<Popular> {
+                        PopularScrn(navController)
+                    }
                 }
             }
         }
@@ -122,3 +127,5 @@ object Otp
 object Slides
 @Serializable
 object Home
+@Serializable
+object Popular

@@ -13,6 +13,6 @@ data class SneakersResponse(
     val category: String,
     @SerialName("isPopular")
     val isPopular: Boolean,
-//    @SerialName("isFavorite")
-//    val isFavorite: Boolean = false
+    @SerialName("isFavorite")
+    val isFavorite: Boolean = false
 )
