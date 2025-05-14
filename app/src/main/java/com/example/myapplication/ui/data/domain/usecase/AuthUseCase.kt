@@ -23,7 +23,7 @@ class AuthUseCase(private val localStorage: LocalStorage,
         try {
             emit(NetworkResponse.Loading)
             if (!EmailValidator.validate(user.email)) {
-                emit(NetworkResponse.Error("Invalid email format"))
+                emit(NetworkResponse.Error("Invalid email format    "))
                 return@flow
             }
             if (!PasswordValidator.validate(user.password)) {
@@ -32,7 +32,7 @@ class AuthUseCase(private val localStorage: LocalStorage,
             }
 
             val result = authRepository.signUp(user)
-            localStorage.setToken(token.toString())
+            localStorage.setToken(result.token)
             emit(NetworkResponse.Success(result))
         } catch (e: Exception) {
             emit(NetworkResponse.Error(e.message ?: "Unknown Error"))
@@ -46,14 +46,16 @@ class AuthUseCase(private val localStorage: LocalStorage,
         try {
             emit(NetworkResponse.Loading)
             val result = authRepository.signIn(loginRequest)
-            localStorage.setToken(token.toString())
+            localStorage.setToken(result.token)
             emit(NetworkResponse.Success(result))
         } catch (e: Exception) {
             emit(NetworkResponse.Error(e.message ?: "Unknown Error"))
         }
     }
 
-
+    suspend fun getAllSneakers(): NetworkResponseSneakers<List<SneakersResponse>>{
+        return authRepository.getAllSneakers()
+    }
 
     suspend fun getSneakersByCategory(category: String): NetworkResponseSneakers<List<SneakersResponse>> {
         val sneakersByCategory = authRepository.getSneakersByCategory(category)

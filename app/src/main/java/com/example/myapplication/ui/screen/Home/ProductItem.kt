@@ -40,7 +40,6 @@ fun getDrawableId(imageName: String): Int {
 @Composable
 fun ProductItem(
     sneaker: SneakersResponse,
-    onItemClick: () -> Unit,
     onFavoriteClick: (Int, Boolean) -> Unit,
     onAddToCart: () -> Unit,
     modifier: Modifier = Modifier
@@ -50,15 +49,14 @@ fun ProductItem(
     Column(
         modifier = modifier
             .height(240.dp)
-            .clip(RoundedCornerShape(12.dp))
-            .background(Color.White)
-            .clickable(onClick = onItemClick),
+            .clip(RoundedCornerShape(15.dp))
+            .background(Color.White),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         Box(
             modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
+                .padding(start = 12.dp, end = 12.dp)
+                .weight(0.9f)
         ) {
             Image(
                 painter = painterResource(id = getDrawableId(sneaker.imageUrl)),
@@ -80,8 +78,12 @@ fun ProductItem(
             ) {
                 Image(
                     painter = painterResource(
-                        if (sneaker.isFavorite) R.drawable.red_heart
-                        else R.drawable.empty_heart
+                        if (sneaker.isFavorite){
+                            R.drawable.red_heart
+                        }
+                        else {
+                            R.drawable.empty_heart
+                        }
                     ),
                     contentDescription = null,
                     modifier = Modifier.size(24.dp)
@@ -134,7 +136,7 @@ fun ProductItem(
                     Image(
                         painter = painterResource(R.drawable.add),
                         contentDescription = null,
-                        modifier = Modifier.size(20.dp)
+                        modifier = Modifier.size(30.dp)
                     )
                 }
             }

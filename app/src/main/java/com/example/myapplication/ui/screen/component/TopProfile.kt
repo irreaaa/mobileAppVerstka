@@ -63,8 +63,5 @@ fun TopPanel(title: String,
                 modifier = Modifier.size(100.dp)
             )
         }
-
-
-
     }
 }

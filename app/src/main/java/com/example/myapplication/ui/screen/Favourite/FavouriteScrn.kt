@@ -55,7 +55,7 @@ fun FavoriteScrn(
                 title = {
                     Text(
                         text = "Избранное",
-                        fontSize = 24.sp,
+                        fontSize = 20.sp,
                         fontWeight = FontWeight.Medium,
                         color = Color.Black
                     )
@@ -67,7 +67,7 @@ fun FavoriteScrn(
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.back_arrow),
-                            contentDescription = "Назад",
+                            contentDescription = null,
                             tint = Color.Black,
                             modifier = Modifier.size(24.dp)
                         )
@@ -75,15 +75,15 @@ fun FavoriteScrn(
                 },
                 actions = {
                     IconButton(
-                        onClick = { navController.navigate("home") },
+                        onClick = {  },
                         modifier = Modifier
-                            .padding(end = 12.dp)
+                            .padding(end = 2.dp)
                             .size(64.dp)
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.red_heart),
-                            contentDescription = "Домой",
-                            modifier = Modifier.size(48.dp),
+                            contentDescription = null,
+                            modifier = Modifier.size(28.dp),
                             tint = Color.Unspecified
                         )
                     }
@@ -147,11 +147,10 @@ fun FavoriteContent(
         ) { sneaker ->
             ProductItem(
                 sneaker = sneaker,
-                onItemClick = { onItemClick(sneaker.id) },
                 onFavoriteClick = { _, isFavorite ->
                     onFavoriteClick(sneaker.id, isFavorite)
                 },
-                onAddToCart = { /* ... */ },
+                onAddToCart = {},
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(0.85f)

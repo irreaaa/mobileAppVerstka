@@ -48,6 +48,8 @@ import com.example.myapplication.ui.screen.Popular.PopularViewModel
 import com.example.myapplication.ui.screen.component.BottomProfile
 import com.example.myapplication.ui.theme.MatuleTheme
 import org.koin.androidx.compose.koinViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -55,7 +57,20 @@ fun ListingScrn(
     navController: NavController,
     categories: List<String> = listOf("Все", "Outdoor", "Tennis")
 ) {
-    var selectedCategory by remember { mutableStateOf("Outdoor") }
+    val viewModel: PopularViewModel = koinViewModel()
+
+    val defaultCategory = navController.previousBackStackEntry
+        ?.savedStateHandle
+        ?.get<String>("selectedCategory") ?: "Outdoor"
+
+    var selectedCategory by remember { mutableStateOf(defaultCategory) }
+
+    LaunchedEffect(Unit) {
+        navController.currentBackStackEntryFlow.collect { backStackEntry ->
+            viewModel.fetchFavorites()
+            viewModel.fetchSneakersByCategory(selectedCategory)
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -63,18 +78,21 @@ fun ListingScrn(
                 title = {
                     Text(
                         text = selectedCategory,
-                        fontSize = 24.sp,
+                        fontSize = 20.sp,
                         fontWeight = FontWeight.Medium,
                         color = Color.Black
                     )
                 },
                 navigationIcon = {
                     IconButton(
-                        onClick = { navController.popBackStack() }
+                        onClick = { navController.popBackStack() },
+                        modifier = Modifier.size(36.dp)
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.back_arrow),
                             contentDescription = null,
+                            tint = Color.Black,
+                            modifier = Modifier.size(24.dp)
                         )
                     }
                 },
@@ -125,7 +143,8 @@ fun CategoryTabs(
                     )
                     .padding(horizontal = 16.dp, vertical = 8.dp)
                     .width(110.dp)
-                    .height(20.dp)
+                    .height(30.dp),
+                contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = category,
@@ -170,11 +189,11 @@ fun ListingContent(
                 items(sneakersWithFavorites, key = { it.id }) { sneaker ->
                     ProductItem(
                         sneaker = sneaker,
-                        onItemClick = { navController.navigate("details/${sneaker.id}") },
+                        //onItemClick = { navController.navigate("details/${sneaker.id}") },
                         onFavoriteClick = { id, isFavorite ->
                             viewModel.toggleFavorite(id, isFavorite)
                         },
-                        onAddToCart = { /* Добавление в корзину */ },
+                        onAddToCart = {},
                         modifier = Modifier.aspectRatio(0.85f)
                     )
                 }

@@ -77,7 +77,7 @@ fun HomeScreenContent(paddingValues: PaddingValues, viewModel: PopularViewModel,
     val message = remember { mutableStateOf("") }
     val sneakersState by viewModel.sneakersState.collectAsState()
     LaunchedEffect(Unit) {
-        viewModel.fetchSneakers()
+        viewModel.fetchSneakersByCategory("Популярное")
     }
 
 
@@ -103,7 +103,7 @@ fun HomeScreenContent(paddingValues: PaddingValues, viewModel: PopularViewModel,
                 leadingIcon = {
                     Icon(
                         painter = painterResource(R.drawable.finder),
-                        contentDescription = "",
+                        contentDescription = null,
                         Modifier.size(20.dp)
                     )
                 },
@@ -141,9 +141,8 @@ fun HomeScreenContent(paddingValues: PaddingValues, viewModel: PopularViewModel,
                 items(listOf("Все", "Outdoor", "Tennis")) { category ->
                     Button(
                         onClick = {
-                            when (category) {
-                                "Outdoor" -> navController.navigate(route = Listing)
-                            }
+                            navController.currentBackStackEntry?.savedStateHandle?.set("selectedCategory", category)
+                            navController.navigate(route = Listing)
                         },
                         modifier = Modifier
                             .padding(end = 16.dp)
@@ -196,9 +195,9 @@ fun HomeScreenContent(paddingValues: PaddingValues, viewModel: PopularViewModel,
                         items(sneakers) { sneaker ->
                             ProductItem(
                                 sneaker = sneaker,
-                                onItemClick = {
-                                    navController.navigate("details/${sneaker.id}")
-                                },
+//                                onItemClick = {
+//                                    //navController.navigate("details/${sneaker.id}")
+//                                },
                                 onFavoriteClick = { id, isFavorite ->
                                     viewModel.toggleFavorite(id, isFavorite)
                                 },

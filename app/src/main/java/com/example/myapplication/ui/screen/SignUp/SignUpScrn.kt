@@ -49,7 +49,7 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun SignUpScrn(onNavigationToProfile: () -> Unit, navController: NavController) {
+fun SignUpScrn(onNavigationToHome: () -> Unit, navController: NavController) {
     val signUpViewModel: SignUpViewModel = koinViewModel()
     val snackBarHostState = remember { SnackbarHostState() }
 
@@ -97,7 +97,7 @@ fun SignUpScrn(onNavigationToProfile: () -> Unit, navController: NavController) 
         val registrationScreenState = signUpViewModel.signUpState
         LaunchedEffect(registrationScreenState.value.isSignUp) {
             if(registrationScreenState.value.isSignUp) {
-                onNavigationToProfile()
+                onNavigationToHome()
             }
         }
 

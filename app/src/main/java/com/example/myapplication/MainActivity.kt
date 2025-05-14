@@ -36,35 +36,39 @@ class MainActivity : ComponentActivity() {
             MatuleTheme {
                 NavHost(navController, startDestination = SplashScreen){
 
-                    composable<SplashScreen>{
+                    composable<SplashScreen> {
                         SplashScreen(
                             authUseCase = authUseCase,
                             dataStore = dataStore,
-//                            onNavigationToSlidesScrn = {
-//                                navController.navigate(route = Slides)
-//                            },
-//                            onNavigationToHome = {
-//                                navController.navigate(route = Home)
-//                            }
-//                            onNavigationToRegistationScreen = {
-//                                navController.navigate(route = Registration)
-//                            }
                             onNavigateToSignIn = {
-                                navController.navigate(route = SignIn)
+                                navController.navigate(route = SignIn) {
+                                    popUpTo(SplashScreen) { inclusive = true }
+                                }
+                            },
+                            onNavigateToSlides = {
+                                navController.navigate(route = Slides) {
+                                    popUpTo(SplashScreen) { inclusive = true }
+                                }
+                            },
+                            onNavigateToHome = {
+                                navController.navigate(route = Home) {
+                                    popUpTo(SplashScreen) { inclusive = true }
+                                }
                             }
                         )
                     }
+
 //
-//                    composable<Slides> {
-//                        SlidesScrn(
-//                            onNavigateToSignInScrn = {
-//                                navController.navigate(route = SignIn){
-//                                    popUpTo(route = Slides) {inclusive = true}
-//                                }
-//                            },
-//                            dataStore = dataStore
-//                        )
-//                    }
+                    composable<Slides> {
+                        SlidesScrn(
+                            onNavigateToSignInScrn = {
+                                navController.navigate(route = SignIn){
+                                    popUpTo(route = Slides) {inclusive = true}
+                                }
+                            },
+                            dataStore = dataStore
+                        )
+                    }
 //
                     composable<SignIn> {
                         SignInScrn(
@@ -82,7 +86,7 @@ class MainActivity : ComponentActivity() {
 //
                     composable<Registration> {
                         SignUpScrn(
-                            onNavigationToProfile = {
+                            onNavigationToHome = {
                                 navController.navigate(route = Home)
                             },
                             navController = navController

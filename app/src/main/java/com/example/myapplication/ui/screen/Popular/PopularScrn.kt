@@ -1,11 +1,9 @@
 package com.example.myapplication.ui.screen.Popular
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -26,7 +24,6 @@ import com.example.myapplication.ui.data.remote.dto.response.SneakersResponse
 import com.example.myapplication.ui.screen.Home.ProductItem
 import org.koin.androidx.compose.koinViewModel
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PopularScrn(navController: NavController, viewModel: PopularViewModel = koinViewModel()) {
@@ -34,7 +31,7 @@ fun PopularScrn(navController: NavController, viewModel: PopularViewModel = koin
     val sneakersState by viewModel.sneakersState.collectAsState()
 
     LaunchedEffect(Unit) {
-        viewModel.fetchSneakers()
+        viewModel.fetchSneakersByCategory("Популярное")
     }
 
     Scaffold(
@@ -43,7 +40,7 @@ fun PopularScrn(navController: NavController, viewModel: PopularViewModel = koin
                 title = {
                     Text(
                         text = "Популярное",
-                        fontSize = 24.sp,
+                        fontSize = 20.sp,
                         fontWeight = FontWeight.Medium,
                         color = Color.Black
                     )
@@ -51,14 +48,14 @@ fun PopularScrn(navController: NavController, viewModel: PopularViewModel = koin
                 navigationIcon = {
                     IconButton(
                         onClick = { navController.popBackStack() },
-                        modifier = Modifier
-                            .size(24.dp)
-                            .background(Color.White, shape = CircleShape)
+                        modifier = Modifier.size(36.dp)
                     ) {
                         Icon(
-                            painter = painterResource(id = R.drawable.back_arrow),
-                            contentDescription = null
-                            )
+                            painter = painterResource(R.drawable.back_arrow),
+                            contentDescription = null,
+                            tint = Color.Black,
+                            modifier = Modifier.size(24.dp)
+                        )
                     }
                 },
                 actions = {
@@ -66,7 +63,6 @@ fun PopularScrn(navController: NavController, viewModel: PopularViewModel = koin
                         onClick = { navController.navigate(route = Favourite) },
                         modifier = Modifier
                             .size(36.dp)
-                            .background(Color.White, shape = CircleShape)
                     ) {
                         Icon(
                             painter = painterResource(id = R.drawable.heart),
@@ -121,7 +117,7 @@ fun PopularContent(
         items(sneakers) { sneaker ->
             ProductItem(
                 sneaker = sneaker,
-                onItemClick = {  },
+                //onItemClick = {  },
                 onFavoriteClick = onFavoriteClick,
                 onAddToCart = { onAddToCart(sneaker) },
                 modifier = Modifier

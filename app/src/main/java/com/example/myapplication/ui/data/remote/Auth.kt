@@ -18,7 +18,7 @@ interface Auth {
     suspend fun authorization(@Body loginRequest: LoginRequest): TokenResponse
 
     @GET("/allSneakers")
-    suspend fun popular(): List<SneakersResponse>
+    suspend fun getAllSneakers(): List<SneakersResponse>
 
     @GET("/sneakers/popular")
     suspend fun getPopularSneakers(): List<SneakersResponse>
