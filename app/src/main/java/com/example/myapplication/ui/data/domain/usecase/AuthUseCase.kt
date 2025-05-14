@@ -19,19 +19,19 @@ class AuthUseCase(private val localStorage: LocalStorage,
     val token: Flow<String> by lazy{
         localStorage.tokenFlow
     }
-    suspend fun signUp(user: User): Flow<NetworkResponse<TokenResponse>> = flow {
+    suspend fun signUp(registrationRequest: RegistrationRequest): Flow<NetworkResponse<TokenResponse>> = flow {
         try {
             emit(NetworkResponse.Loading)
-            if (!EmailValidator.validate(user.email)) {
+            if (!EmailValidator.validate(registrationRequest.email)) {
                 emit(NetworkResponse.Error("Invalid email format    "))
                 return@flow
             }
-            if (!PasswordValidator.validate(user.password)) {
+            if (!PasswordValidator.validate(registrationRequest.password)) {
                 emit(NetworkResponse.Error("Password must contain: 8+ chars, 1 uppercase, 1 digit, 1 special char"))
                 return@flow
             }
 
-            val result = authRepository.signUp(user)
+            val result = authRepository.signUp(registrationRequest)
             localStorage.setToken(result.token)
             emit(NetworkResponse.Success(result))
         } catch (e: Exception) {

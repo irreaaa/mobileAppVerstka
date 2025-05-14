@@ -8,6 +8,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.myapplication.ui.data.domain.usecase.AuthUseCase
 import com.example.myapplication.ui.data.remote.NetworkResponse
 import com.example.myapplication.ui.data.remote.User
+import com.example.myapplication.ui.data.remote.dto.request.RegistrationRequest
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -42,13 +43,13 @@ class SignUpViewModel(val authUseCase: AuthUseCase): ViewModel() {
 
     fun signUp(){
         viewModelScope.launch {
-            val user = User(
+            val registrationRequest = RegistrationRequest(
                 userName = signUpState.value.name,
                 email = signUpState.value.email,
                 password = signUpState.value.password
             )
 
-            authUseCase.signUp(user).collect { response ->
+            authUseCase.signUp(registrationRequest).collect { response ->
                 when(response) {
                     is NetworkResponse.Error -> {
                         setLoading(false)

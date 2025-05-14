@@ -95,8 +95,8 @@ fun SignUpScrn(onNavigationToHome: () -> Unit, navController: NavController) {
         SignUpContent(paddingValues, signUpViewModel)
 
         val registrationScreenState = signUpViewModel.signUpState
-        LaunchedEffect(registrationScreenState.value.isSignUp) {
-            if(registrationScreenState.value.isSignUp) {
+        LaunchedEffect(registrationScreenState.value.isSignedIn) {
+            if (registrationScreenState.value.isSignedIn) {
                 onNavigationToHome()
             }
         }

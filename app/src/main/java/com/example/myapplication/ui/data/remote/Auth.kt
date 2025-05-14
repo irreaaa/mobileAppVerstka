@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.data.remote
 
+import com.example.myapplication.ui.data.remote.dto.request.RegistrationRequest
 import com.example.myapplication.ui.data.remote.dto.response.SneakersResponse
 import com.example.myapplication.ui.data.remote.dto.response.TokenResponse
 import okhttp3.ResponseBody
@@ -12,7 +13,7 @@ import retrofit2.http.Path
 
 interface Auth {
     @POST("/registration")
-    suspend fun registration(@Body user: User): TokenResponse
+    suspend fun registration(@Body registrationRequest: RegistrationRequest): TokenResponse
 
     @POST("/login")
     suspend fun authorization(@Body loginRequest: LoginRequest): TokenResponse
