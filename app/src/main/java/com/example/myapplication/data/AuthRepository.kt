@@ -8,11 +8,9 @@ import kotlinx.coroutines.delay
 
 class AuthRepository(private val api: Auth) {
     suspend fun signUp(registrationRequest: RegistrationRequest): TokenResponse {
-        delay(3000)
         return api.registration(registrationRequest)
     }
     suspend fun signIn(loginRequest: LoginRequest): TokenResponse {
-        delay(3000)
         return api.authorization(loginRequest)
     }
 }

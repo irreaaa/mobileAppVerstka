@@ -39,10 +39,9 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun SlidesScrn(
-    onNavigateToSignInScrn: () -> Unit,
-    dataStore: DataStoreOnBoarding
-){
-    val pagerState = rememberPagerState(pageCount = {3})
+    onNavigateToSignInScrn: () -> Unit
+) {
+    val pagerState = rememberPagerState(pageCount = { 3 })
     val coroutineScope = rememberCoroutineScope()
 
     val pages = listOf(
@@ -68,6 +67,7 @@ fun SlidesScrn(
             image2 = R.drawable.curlicues
         ),
     )
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -193,7 +193,6 @@ fun SlidesScrn(
                     if (pagerState.currentPage < pages.lastIndex) {
                         pagerState.animateScrollToPage(pagerState.currentPage + 1)
                     } else {
-                        dataStore.setOnBoardingCompleted(true)
                         onNavigateToSignInScrn()
                     }
                 }
@@ -202,10 +201,11 @@ fun SlidesScrn(
                 containerColor = Color.White,
                 contentColor = Color.Black
             ),
-            modifier = Modifier.padding(horizontal = 15.dp)
+            modifier = Modifier
+                .padding(horizontal = 15.dp)
                 .fillMaxWidth()
                 .height(50.dp)
-        ){
+        ) {
             Text(
                 text = when (pagerState.currentPage) {
                     0 -> "Начать"

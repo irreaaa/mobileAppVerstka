@@ -20,9 +20,11 @@ import com.example.myapplication.ui.screen.RecoverPassword.RecoverPasswordScrn
 import com.example.myapplication.ui.screen.SignIn.SignInScrn
 import com.example.myapplication.ui.screen.SignUp.SignUpScrn
 import com.example.myapplication.ui.screen.Welcome.SplashScreen
+import com.example.myapplication.ui.screen.Welcome.SplashViewModel
 import com.example.myapplication.ui.theme.MatuleTheme
 import kotlinx.serialization.Serializable
 import org.koin.android.ext.android.get
+import org.koin.androidx.compose.koinViewModel
 
 
 class MainActivity : ComponentActivity() {
@@ -37,21 +39,22 @@ class MainActivity : ComponentActivity() {
                 NavHost(navController, startDestination = SplashScreen){
 
                     composable<SplashScreen> {
+                        val splashViewModel: SplashViewModel = koinViewModel()
+
                         SplashScreen(
-                            authUseCase = authUseCase,
-                            dataStore = dataStore,
+                            viewModel = splashViewModel,
                             onNavigateToSignIn = {
-                                navController.navigate(route = SignIn) {
+                                navController.navigate(SignIn) {
                                     popUpTo(SplashScreen) { inclusive = true }
                                 }
                             },
                             onNavigateToSlides = {
-                                navController.navigate(route = Slides) {
+                                navController.navigate(Slides) {
                                     popUpTo(SplashScreen) { inclusive = true }
                                 }
                             },
                             onNavigateToHome = {
-                                navController.navigate(route = Home) {
+                                navController.navigate(Home) {
                                     popUpTo(SplashScreen) { inclusive = true }
                                 }
                             }
@@ -65,8 +68,7 @@ class MainActivity : ComponentActivity() {
                                 navController.navigate(route = SignIn){
                                     popUpTo(route = Slides) {inclusive = true}
                                 }
-                            },
-                            dataStore = dataStore
+                            }
                         )
                     }
 //

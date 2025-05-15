@@ -1,4 +1,4 @@
-package com.example.myapplication.data.remote
+package com.example.myapplication.data.remote.network
 
 import kotlinx.serialization.Serializable
 

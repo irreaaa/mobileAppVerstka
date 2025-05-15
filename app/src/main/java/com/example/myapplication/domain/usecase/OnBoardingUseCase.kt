@@ -1,14 +1,14 @@
 package com.example.myapplication.domain.usecase
 
-import com.example.myapplication.data.local.DataStoreOnBoarding
+import com.example.myapplication.data.local.LocalStorage
 import kotlinx.coroutines.flow.Flow
 
-class OnBoardingUseCase(private val dataStoreOnBoarding: DataStoreOnBoarding) {
-
+class OnBoardingUseCase(private val localStorage: LocalStorage)
+{
     val isOnBoardingCompleted: Flow<Boolean>
-        get() = dataStoreOnBoarding.onBoardingCompleted
+        get() = localStorage.onBoardingShownFlow
 
     suspend fun completeOnBoarding() {
-        dataStoreOnBoarding.setOnBoardingCompleted(true)
+        localStorage.setOnBoardingShown(true)
     }
 }
