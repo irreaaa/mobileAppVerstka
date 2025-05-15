@@ -46,8 +46,8 @@ import androidx.navigation.NavController
 import com.example.myapplication.Listing
 import com.example.myapplication.Popular
 import com.example.myapplication.R
-import com.example.myapplication.ui.data.remote.NetworkResponseSneakers
-import com.example.myapplication.ui.data.remote.dto.response.SneakersResponse
+import com.example.myapplication.data.remote.network.response.NetworkResponseSneakers
+import com.example.myapplication.data.remote.network.response.SneakersResponse
 import com.example.myapplication.ui.screen.Popular.PopularViewModel
 import com.example.myapplication.ui.screen.component.BottomProfile
 import com.example.myapplication.ui.screen.component.TopPanel

@@ -16,7 +16,6 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -35,10 +34,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myapplication.R
-import com.example.myapplication.ui.data.local.DataStoreOnBoarding
-import com.example.myapplication.ui.data.local.OnboardingPage
-import com.example.myapplication.ui.screen.component.AuthButton
-import com.example.myapplication.ui.theme.MatuleTheme
+import com.example.myapplication.data.local.DataStoreOnBoarding
 import kotlinx.coroutines.launch
 
 @Composable
@@ -50,21 +46,21 @@ fun SlidesScrn(
     val coroutineScope = rememberCoroutineScope()
 
     val pages = listOf(
-        OnboardingPage(
+        com.example.myapplication.data.local.OnboardingPage(
             welcome = stringResource(R.string.welcome),
             title = "",
             description = "",
             image = R.drawable.sneackers_leg1,
             image2 = R.drawable.curlicues
         ),
-        OnboardingPage(
+        com.example.myapplication.data.local.OnboardingPage(
             welcome = "",
             title = stringResource(R.string.welcome_page2_title),
             description = stringResource(R.string.welcome_page2_desc),
             image = R.drawable.sneacker,
             image2 = R.drawable.curlicues
         ),
-        OnboardingPage(
+        com.example.myapplication.data.local.OnboardingPage(
             welcome = "",
             title = stringResource(R.string.welcome_page3_title),
             description = stringResource(R.string.welcome_page3_desc),

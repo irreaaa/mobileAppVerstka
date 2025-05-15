@@ -4,12 +4,9 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.myapplication.ui.data.domain.usecase.AuthUseCase
-import com.example.myapplication.ui.data.remote.NetworkResponse
-import com.example.myapplication.ui.data.remote.User
-import com.example.myapplication.ui.data.remote.dto.request.RegistrationRequest
-import kotlinx.coroutines.delay
+import com.example.myapplication.domain.usecase.AuthUseCase
+import com.example.myapplication.data.remote.network.response.NetworkResponse
+import com.example.myapplication.data.remote.network.request.RegistrationRequest
 import kotlinx.coroutines.launch
 
 class SignUpViewModel(val authUseCase: AuthUseCase): ViewModel() {

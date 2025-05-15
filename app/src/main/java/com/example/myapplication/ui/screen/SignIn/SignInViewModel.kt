@@ -4,9 +4,9 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myapplication.ui.data.domain.usecase.AuthUseCase
-import com.example.myapplication.ui.data.remote.LoginRequest
-import com.example.myapplication.ui.data.remote.NetworkResponse
+import com.example.myapplication.domain.usecase.AuthUseCase
+import com.example.myapplication.data.remote.network.request.LoginRequest
+import com.example.myapplication.data.remote.network.response.NetworkResponse
 import kotlinx.coroutines.launch
 
 class SignInViewModel(val authUseCase: AuthUseCase): ViewModel() {

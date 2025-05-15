@@ -42,13 +42,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.myapplication.R
-import com.example.myapplication.ui.data.remote.NetworkResponseSneakers
+import com.example.myapplication.data.remote.network.response.NetworkResponseSneakers
 import com.example.myapplication.ui.screen.Home.ProductItem
 import com.example.myapplication.ui.screen.Popular.PopularViewModel
 import com.example.myapplication.ui.screen.component.BottomProfile
 import com.example.myapplication.ui.theme.MatuleTheme
 import org.koin.androidx.compose.koinViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 
 @OptIn(ExperimentalMaterial3Api::class)

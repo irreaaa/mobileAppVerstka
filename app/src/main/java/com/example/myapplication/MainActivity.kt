@@ -9,8 +9,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.myapplication.ui.data.domain.usecase.AuthUseCase
-import com.example.myapplication.ui.data.local.DataStoreOnBoarding
+import com.example.myapplication.domain.usecase.AuthUseCase
+import com.example.myapplication.data.local.DataStoreOnBoarding
 import com.example.myapplication.ui.screen.Favourite.FavoriteScrn
 import com.example.myapplication.ui.screen.Home.HomeScreen
 import com.example.myapplication.ui.screen.Listing.ListingScrn

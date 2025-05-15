@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.myapplication.R
-import com.example.myapplication.ui.common.CommonButton
+import com.example.myapplication.ui.screen.common.CommonButton
 import com.example.myapplication.ui.theme.MatuleTheme
 
 @Composable

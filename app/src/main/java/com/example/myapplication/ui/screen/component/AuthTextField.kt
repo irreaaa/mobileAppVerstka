@@ -18,7 +18,7 @@ import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import com.example.myapplication.ui.common.CommonTextField
+import com.example.myapplication.ui.screen.common.CommonTextField
 
 @Composable
 fun AuthTextField(

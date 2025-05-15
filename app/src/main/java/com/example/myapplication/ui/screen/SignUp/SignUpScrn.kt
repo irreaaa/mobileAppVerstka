@@ -30,16 +30,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.myapplication.R
-import com.example.myapplication.Registration
 import com.example.myapplication.SignIn
-import com.example.myapplication.ui.data.domain.usecase.AuthUseCase
-import com.example.myapplication.ui.data.remote.RetrofitClient
-import com.example.myapplication.ui.data.remote.User
-import com.example.myapplication.ui.screen.SignIn.SignInScrn
-import com.example.myapplication.ui.screen.SignIn.SignInViewModel
 import com.example.myapplication.ui.screen.component.AuthButton
 import com.example.myapplication.ui.screen.component.AuthTextField
 import com.example.myapplication.ui.screen.component.TitleWithSubtitleText

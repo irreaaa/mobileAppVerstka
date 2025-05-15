@@ -27,7 +27,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myapplication.R
-import com.example.myapplication.ui.data.remote.dto.response.SneakersResponse
+import com.example.myapplication.data.remote.network.response.SneakersResponse
 import com.example.myapplication.ui.theme.MatuleTheme
 
 fun getDrawableId(imageName: String): Int {
