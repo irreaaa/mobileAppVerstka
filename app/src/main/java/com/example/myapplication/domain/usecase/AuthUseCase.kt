@@ -1,13 +1,13 @@
 package com.example.myapplication.domain.usecase
 
-import com.example.myapplication.data.AuthRepository
+import com.example.myapplication.data.repository.AuthRepository
 import com.example.myapplication.data.local.LocalStorage
 import com.example.myapplication.data.remote.network.request.LoginRequest
 import com.example.myapplication.data.remote.network.request.RegistrationRequest
 import com.example.myapplication.data.remote.network.response.NetworkResponse
 import com.example.myapplication.data.remote.network.response.TokenResponse
-import com.example.myapplication.domain.EmailValidator
-import com.example.myapplication.domain.PasswordValidator
+import com.example.myapplication.domain.validator.EmailValidator
+import com.example.myapplication.domain.validator.PasswordValidator
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

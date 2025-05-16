@@ -1,6 +1,6 @@
 package com.example.myapplication.di
 
-import com.example.myapplication.data.AuthRepository
+import com.example.myapplication.data.repository.AuthRepository
 import com.example.myapplication.data.local.LocalStorage
 import com.example.myapplication.data.remote.AuthInterceptor
 import com.example.myapplication.data.remote.RetrofitClient

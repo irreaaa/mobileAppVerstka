@@ -1,4 +1,4 @@
-package com.example.myapplication.domain
+package com.example.myapplication.domain.validator
 
 object PasswordValidator: Validator {
     override fun <T> validate(value: T): Boolean {
